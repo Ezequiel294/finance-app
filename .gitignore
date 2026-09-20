@@ -1,0 +1,8 @@
+# Ignore everything
+/*
+
+# Except this files/directories:
+!/.claude
+!/.agent
+!/openspec
+!.gitignore
