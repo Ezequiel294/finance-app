@@ -11,7 +11,7 @@ Each 1-pager SHALL contain exactly these five sections, with these headings, in 
 #### Scenario: A section is missing, renamed, or reordered
 
 - **WHEN** a 1-pager omits a required section, uses a different heading, or reorders them
-- **THEN** it MUST be corrected to match the template exactly, because the submitted documents are graded against that template
+- **THEN** it MUST be corrected to match the template exactly, because readers rely on finding the same sections, under the same names, in every 1-pager
 
 #### Scenario: An extra section is introduced
 

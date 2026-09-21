@@ -38,17 +38,12 @@ The vision SHALL be a succinct statement, not a specification. It MUST NOT enume
 
 ### Requirement: Draft Retention
 
-Every superseded version of the vision SHALL be retained at `docs/<product-slug>/drafts/vision-v<N>.md`, numbered sequentially from 1, and MUST NOT be deleted or overwritten. `vision.md` always holds the current version.
-
-#### Scenario: The vision is revised
-
-- **WHEN** the vision is changed for any reason
-- **THEN** the prior text MUST first be written to the next unused `drafts/vision-v<N>.md` before `vision.md` is updated
+`docs/vision.md` SHALL always hold the current vision, and every superseded version SHALL be retained under `docs/drafts/` as required by the documentation layout. Each retained version MUST carry a note of what changed and why.
 
 #### Scenario: A draft records no reason for the change
 
 - **WHEN** a retained draft is stored without a note of what changed and why
-- **THEN** that note MUST be added, since the evolution of the vision is itself graded evidence
+- **THEN** that note MUST be added, because a later reader needs to know why the product's direction changed, not merely that it did
 
 ### Requirement: Vision Governs Feature Inclusion
 

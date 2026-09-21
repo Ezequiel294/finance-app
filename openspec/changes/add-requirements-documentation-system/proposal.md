@@ -1,30 +1,29 @@
 ## Why
 
-CS 3365 Project 1 is graded on requirements documentation — product visions, personas, 1-pagers, functional requirements, and sizing — turned in on October 1, 2026. Those documents must follow specific, checkable conventions (Sommerville *Engineering Software Products* Ch3 for personas and scenarios; the 1-pager template at the end of `project1.md`), and they will be revised repeatedly across two products and two AI models before submission.
+This product is defined by a set of documents before it is defined by any code: a product vision, personas, 1-pagers describing each initiative, the user stories that make up their functional requirements, and the effort sizing attached to those stories. These documents are not a one-time deliverable. They are the standing description of what the product is for and who it serves, and they will be read, revised, and argued with for as long as the product is developed.
 
-Without a written contract for how each document type is structured, drift is inevitable: personas grow past five, a PROBLEM section turns into a bullet list, sizing gets assigned with no stated rationale. This change makes those conventions machine-readable specs so every later edit — by a teammate or an AI agent — is checked against the same rules, and so the same mechanism extends to code specs when development starts at Milestone 2.
+Documents like these drift when the conventions behind them live only in people's heads. Personas accumulate until they overlap and stop being useful. A problem statement quietly turns into a specification. Sizes get assigned with no reasoning anyone can reconstruct later. A story gets built and nobody can tell afterwards which ones are done. Writing the conventions down as specifications makes them checkable: any contributor, and any tool, can verify a document against the rule it is supposed to follow instead of guessing at house style.
 
 ## What Changes
 
-- Introduce a **documentation capability family** under `specs/documentation/` that defines how each Project 1 artifact type is written, read, and updated.
-- Establish `docs/` as the home for actual document content, with a defined layout, naming convention, and index.
-- Encode the Sommerville Ch3 constraints as testable requirements: persona ceiling and required aspects, narrative (not structured) scenarios, the user-story format, the ban on negative stories in a backlog.
-- Encode the `project1.md` 1-pager template as a structural requirement so section headings and ordering cannot drift.
-- Define the sizing protocol — metric, scale, baseline anchor, and the rationale each estimate must carry.
-- Define how AI interactions are logged and how the cross-model critique is produced, given that each model's work lives on its own git branch.
-- **No application code is written by this change.** Its implementation output is Markdown under `docs/`.
+- Introduce a **documentation capability family** under `specs/documentation/` defining how each document type is written, read, and updated.
+- Establish `docs/` as the home for document content, with a defined layout, naming convention, and index.
+- Define what makes a persona useful and bounded: how many there may be, what each must contain, what must never appear in one, and which user types were deliberately excluded.
+- Define the 1-pager structure, and require its problem statement to be a narrative account of a person trying to do something rather than a specification of system behavior.
+- Define the user story format, and define how a story's implementation status is derived from the specs rather than tracked separately, so the project needs no external board to answer what is built and what is not.
+- Define the sizing protocol: the metric, its scale, the baseline every estimate is compared against, and the reasoning each estimate must carry.
+- **No application code is written by this change.** Its output is Markdown under `docs/`.
 
 ## Capabilities
 
 ### New Capabilities
 
-- `documentation/doc-structure`: Where documentation lives, how files and directories are named, how the index and traceability map are maintained, and how per-product and per-model isolation works across git branches.
-- `documentation/product-vision`: How a product vision is written (Moore template), how drafts are retained as graded evidence, and how the vision is revised without losing its history.
-- `documentation/personas`: How personas are authored — count ceiling, required aspects, prohibited content, documented omissions — and how the set is revised when a new persona is proposed.
-- `documentation/one-pagers`: The required structure of a 1-pager, what belongs in each section, and what makes a PROBLEM section a properly written Sommerville scenario rather than a specification.
-- `documentation/user-stories`: The story format used inside 1-pagers and reused later as backlog items, including supporting detail bullets and the handling of negative stories.
-- `documentation/requirements-sizing`: The effort metric, its scale, the published baseline anchor, the dimensions each estimate is scored on, and the rationale that must accompany every size.
-- `documentation/ai-interaction-log`: How prompts and model outputs are recorded, and how the comparative model critique is assembled from work that lives on separate branches.
+- `documentation/doc-structure`: Where documentation lives, how files are named, how the index is maintained, and how a reader determines which documented requirements are already built.
+- `documentation/product-vision`: How the product vision is written, how superseded versions are retained with the reasoning behind each change, and how the vision governs whether a proposed feature belongs in the product.
+- `documentation/personas`: How personas are authored — count ceiling, required aspects, prohibited content, grounding, and documented omissions — and how the set is revised when a new persona is proposed.
+- `documentation/one-pagers`: The required structure of a 1-pager, what belongs in each section, and what makes a problem statement a narrative scenario rather than a specification.
+- `documentation/user-stories`: The story format, stable story identifiers, the lifecycle of a story from written to built or withdrawn, and how implementation status is derived from the specs.
+- `documentation/requirements-sizing`: The effort metric, its scale, the published baseline anchor, the dimensions each estimate is scored on, and the rationale every size must carry.
 
 ### Modified Capabilities
 
@@ -32,8 +31,7 @@ None. This is the first capability set in the project; `openspec/specs/` is curr
 
 ## Impact
 
-- **New directory** `docs/` holding all Project 1 document content.
-- **New specs** under `openspec/specs/documentation/` after this change is synced.
-- **Existing file** `llm-prompts.md` at the repository root is superseded by the logging convention defined here and will be relocated under `docs/`.
-- **Git branches**: `claude` and `agy` each carry one model's document set; `main` is where the cross-model critique is assembled. The `doc-structure` capability records this so the layout is not re-derived per branch.
-- **No runtime code, dependencies, or APIs are affected.** Code capabilities will be added as separate changes at Milestone 2.
+- **New directory** `docs/` holding all product document content.
+- **New specs** under `openspec/specs/documentation/` once this change is synced.
+- **A convention that outlives this change**: capability specs written during development cite the story identifiers they realize, which is what makes implementation status derivable rather than separately tracked.
+- **No runtime code, dependencies, or APIs are affected.** Product capabilities will be added as separate changes when development begins.
