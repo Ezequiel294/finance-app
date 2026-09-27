@@ -1,5 +1,22 @@
 schema: spec-driven
 
+context: |
+  Domain: personal finance management for individuals who hold accounts at more
+  than one institution and in more than one currency (colones and US dollars).
+  The product covers spending capture and categorization, budgets and limits,
+  dashboards, multi-currency handling, and manually held investment positions
+  valued at live prices net of fees.
+
+  Documentation rules live in openspec/specs/documentation/ and govern how the
+  vision, personas, 1-pagers, user stories, and sizing are written, read, and
+  updated. Read the relevant capability there before authoring or revising any
+  document under docs/.
+
+  Implementation status of a user story is derived, never hand-marked: a story
+  is built when a requirement in openspec/specs/ cites its identifier, in
+  progress when only an active change cites it, and not started otherwise.
+
+
 # Project context (optional)
 # This is shown to AI when creating artifacts.
 # Add your tech stack, conventions, style guides, domain knowledge, etc.

@@ -82,11 +82,18 @@ Any persona referenced in a 1-pager SHALL be defined in `personas.md`, and any d
 - **WHEN** a functional requirement names a persona that does not appear in `personas.md`
 - **THEN** either the persona MUST be added under the persona rules, or the requirement MUST be reassigned to an existing persona
 
-### Requirement: Superseded Versions Are Retained
+### Requirement: Superseded Versions Are Retained On Composition Change
 
-A document version replaced by a substantive revision SHALL be retained under `docs/drafts/` as `<document>-v<N>.md`, numbered sequentially, and MUST NOT be deleted or overwritten.
+A document version replaced by a **composition change** SHALL be retained under `docs/drafts/` as `<document>-v<N>.md`, numbered sequentially, and MUST NOT be deleted or overwritten. A composition change is one that alters what the document asserts or which items it contains: rewording the vision statement, adding or removing a persona, rewriting a problem statement, or withdrawing or replacing a story.
 
-#### Scenario: A document is substantively revised
+Additive and corrective edits SHALL NOT produce a retained version. Appending a story, adding an assumption, tightening a non-functional requirement, correcting a factual detail, and fixing wording or typography are ordinary edits, and git history is the record for them.
 
-- **WHEN** a document's content is materially changed rather than corrected for typography
-- **THEN** the prior version MUST first be written to the next unused `drafts/<document>-v<N>.md` before the current file is updated
+#### Scenario: A document's composition changes
+
+- **WHEN** a persona is added or removed, the vision statement is reworded, a problem statement is rewritten, or a story is withdrawn or replaced
+- **THEN** the prior version MUST first be written to the next unused `drafts/<document>-v<N>.md`, with a note of what changed and why, before the current file is updated
+
+#### Scenario: A document is edited additively or corrected
+
+- **WHEN** a story is appended, an assumption is added, a threshold is tightened, or a factual detail is corrected
+- **THEN** no version is retained, because retaining one for every such edit buries the composition changes that are worth reading among edits that are not
