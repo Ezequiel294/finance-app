@@ -1,32 +1,29 @@
 schema: spec-driven
 
-# Project context (optional)
-# This is shown to AI when creating artifacts.
-# Add your tech stack, conventions, style guides, domain knowledge, etc.
-# Example:
-#   context: |
-#     Tech stack: TypeScript, React, Node.js
-#     We use conventional commits
-#     Domain: e-commerce platform
+context: |
+  Repository: ApexFinance - Personal Finance & Expense Tracker
+  Course: CS 3365 Software Engineering (Fall 2026)
+  Frameworks: Ian Sommerville "Engineering Software Products" (ESP Ch 1 & 3)
+  Target Platforms: React Native + Expo (Mobile iOS/Android) and Web
+  Primary User: Ezequiel Martinez (Independent student in Costa Rica, dual-currency CRC/USD, BAC Credomatic & Banco Nacional)
+  Investment Tracker: S&P 500 (VOO) & Bitcoin (BTC) accounting for 1.55% deposit fees, trade fees, and $52 SWIFT exit costs (Inversiones.xlsx model)
+  Canonical Documentation: All primary deliverables live in `docs/`
+  Historical Evolution & Drafts: Major architectural pivots are snapshotted in `docs/drafts/`
 
-# Per-artifact rules (optional)
-# Add custom rules for specific artifacts.
-# Example:
-#   rules:
-#     proposal:
-#       - Keep proposals under 500 words
-#       - Always include a "Non-goals" section
-#     tasks:
-#       - Break tasks into chunks of max 2 hours
+rules:
+  documentation:
+    - "All canonical deliverables must reside in the `docs/` directory and match project1.md templates."
+    - "Personas must strictly adhere to Sommerville's 4 dimensions (Personalization, Job, Education/Skills, Relevance) and explicitly reject arbitrary user goals."
+    - "1-Pagers must follow the project1.md template verbatim: PROBLEM (narrative scenario), ASSUMPTIONS, FUNCTIONAL REQUIREMENTS ('As a... I want to... so that...'), NON-FUNCTIONAL REQUIREMENTS, and REQUIREMENTS SIZING."
+    - "All requirements sizing must use Fibonacci story points (1, 2, 3, 5, 8, 13) and include a written technical rationale."
+  
+  draft_policy:
+    - "Never create draft snapshots for minor typos, grammar, or formatting fixes."
+    - "Before making a SUBSTANTIAL change (architectural pivot, persona change, new fee math, or epic scope change), copy the prior file to `docs/drafts/<name>-v[N].md`."
+    - "Every draft file in `docs/drafts/` must prepend an 'Evolution & Why This Changed' section detailing: (1) what was deficient, (2) what insights prompted the change, and (3) what was improved in the canonical version."
+    - "Maintain a running evolution summary in `docs/drafts/CHANGELOG-EVOLUTION.md`."
 
-# Per-operation guidance (optional)
-# Add advisory guidance for how apply and archive work should be conducted.
-# This is separate from artifact rules above.
-# Example:
-#   operations:
-#     apply:
-#       guidance:
-#         - Keep test summaries concise
-#     archive:
-#       guidance:
-#         - Summarize the archive outcome before finishing
+  implementation:
+    - "Before writing code in Milestone 2, developers and AI agents must consult the corresponding epic in `docs/epics/`."
+    - "Code implementations must strictly enforce the Non-Functional Requirements defined in the spec."
+    - "Any change in technical architecture or assumptions discovered during development must be reconciled back into `docs/`."
