@@ -28,7 +28,7 @@ To solve this, ApexFinance delivers a cross-platform presentation layer built wi
   * *Detail A:* Top cards show: `Spendable Today (CRC ₡)`, `Protected Salary (USD $)`, `BNCR Sobres (CRC/USD)`, and `Liquid Investments (USD $)`.
   * *Detail B:* Currency amounts are rendered in distinct visual badges with clear currency symbols.
 
-* **As a** user like Devon or Ezequiel, **I want to** scrub across dynamic spending charts to see day-by-day cash outflows **in order to** identify which days of the week have the highest expenditure.
+* **As a** user like Ezequiel, **I want to** scrub across dynamic spending charts to see day-by-day cash outflows **in order to** identify which days of the week have the highest expenditure.
   * *Detail A:* Touch and mouse hover scrubbing displays date, total spend, and top merchant for that specific day.
   * *Detail B:* Segmented filters allow toggling between 7-Day, 30-Day, Month-to-Date, and Custom Date Ranges.
 
