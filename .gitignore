@@ -3,7 +3,5 @@
 
 # Except this files/directories:
 !.gitignore
-!.claude/
-!.agent/
 !openspec/
 !docs/
