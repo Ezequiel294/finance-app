@@ -12,38 +12,51 @@ context: |
   updated. Read the relevant capability there before authoring or revising any
   document under docs/.
 
+  Delivery rules live in openspec/specs/process/ and govern how a story becomes
+  working software. A product change realizes exactly one story and is built as
+  ordered vertical slices, each tested, working, and reviewed before the next
+  begins (process/vertical-slices). Work is pulled from docs/backlog.md under a
+  Definition of Ready and a Definition of Done (process/backlog-flow). Work
+  branches start from develop, merge back by merge commit, and every merge is
+  tagged with a semver version (process/branching-and-releases). Product specs
+  live at openspec/specs/<epic-slug>/<capability>/ (process/capability-layout).
+  Read the relevant capability there before proposing or applying a change.
+
   Implementation status of a user story is derived, never hand-marked: a story
-  is built when a requirement in openspec/specs/ cites its identifier, in
-  progress when only an active change cites it, and not started otherwise.
+  is built when a requirement in a product capability spec under openspec/specs/
+  cites its identifier, in progress when only an active change cites it, and not
+  started otherwise. Product capability specs are every spec outside the
+  documentation/ and process/ domains.
 
+rules:
+  proposal:
+    - "For a product change, name exactly one story identifier (<NN>-S<NN>) that the change realizes, and name the change <story-id>-<slug> in lowercase."
+    - "Before proposing a product change, confirm the story meets the Definition of Ready in process/backlog-flow; if it does not, stop and state what is missing instead of proposing."
+    - "List product capabilities as <epic-slug>/<capability>, where <epic-slug> is the 1-pager file name without its ordinal. Search openspec/specs/ first and prefer modifying an existing capability over creating a new one."
+  specs:
+    - "Carry every detail bullet under the story into at least one scenario, and include no scenario that traces to nothing in the story."
+    - "In a product capability spec, end each requirement's description with a line of the form 'Realizes: <NN>-S<NN>' listing every story that shaped it. When modifying a requirement, keep its existing citations and add the new one."
+    - "Describe observable behavior only. Frameworks, libraries, modules, and tables belong in design.md and docs/architecture.md."
+  design:
+    - "For a story change, list the planned slices and the layers each one touches."
+    - "If this is the first product change, choose the stack, create docs/architecture.md, and update .gitignore to admit the source directories."
+    - "If the design makes a structural decision, state the update it makes to docs/architecture.md."
+    - "Name the non-functional requirements from the story's 1-pager that apply to it, and for each say how it is met or which follow-up story defers it."
+  tasks:
+    - "For a story change, structure tasks as '## N. Slice N: <observable behavior>' groups followed by a final '## N. Done' group."
+    - "Each slice starts with tasks that write failing tests for its scenarios, continues with only the data, backend, and interface tasks that slice needs, and ends with a verify task that runs the whole test suite and lists demo steps."
+    - "Every slice after the first includes a task for a test that exercises it together with an earlier slice."
+    - "Never group tasks by layer for the whole story, and never build anything ahead of the slice that first needs it."
+    - "The Done group covers openspec validate --strict, the applicable non-functional requirements, docs/architecture.md, archiving, refreshing the docs/README.md status table, and removing the story from docs/backlog.md."
 
-# Project context (optional)
-# This is shown to AI when creating artifacts.
-# Add your tech stack, conventions, style guides, domain knowledge, etc.
-# Example:
-#   context: |
-#     Tech stack: TypeScript, React, Node.js
-#     We use conventional commits
-#     Domain: e-commerce platform
-
-# Per-artifact rules (optional)
-# Add custom rules for specific artifacts.
-# Example:
-#   rules:
-#     proposal:
-#       - Keep proposals under 500 words
-#       - Always include a "Non-goals" section
-#     tasks:
-#       - Break tasks into chunks of max 2 hours
-
-# Per-operation guidance (optional)
-# Add advisory guidance for how apply and archive work should be conducted.
-# This is separate from artifact rules above.
-# Example:
-#   operations:
-#     apply:
-#       guidance:
-#         - Keep test summaries concise
-#     archive:
-#       guidance:
-#         - Summarize the archive outcome before finishing
+operations:
+  apply:
+    guidance:
+      - "Implement one slice (one task group) at a time."
+      - "When a slice's tasks are complete, run the full test suite and commit the slice on its own; generated scaffolding may be a separate commit within the slice. Then stop."
+      - "At each stop, summarize the changes in each layer, the tests added, and the demo steps, and wait for the review to be accepted before starting the next slice."
+      - "If a slice proves too large to review comfortably, propose splitting the remaining work in tasks.md before continuing."
+  archive:
+    guidance:
+      - "After archiving, refresh the implementation status table in docs/README.md from the specs."
+      - "Remove the realized story from docs/backlog.md in the same commit as the archive."
