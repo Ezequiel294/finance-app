@@ -1,4 +1,4 @@
-# Accounts and Transaction Ingestion — 1-Pager
+# Accounts and Transaction Ingestion
 
 ### PROBLEM
 
@@ -52,7 +52,7 @@ turns up twice by two different routes.
   connection or alert and once from a statement covering the same period — so duplicate
   detection is a normal condition rather than an error.
 
-### FUNCTIONAL REQUIREMENTS
+### STORIES
 
 * **01-S01** — **As** Ezequiel, **I want to** connect an account at my bank **so that I
   can** have transactions appear without typing them in myself
@@ -139,21 +139,3 @@ turns up twice by two different routes.
   than implying it is live.
 - **Import durability.** A failed or interrupted import leaves no partial set of
   transactions; either the readable rows are all committed or none are.
-
-### REQUIREMENTS SIZING
-
-Estimated in story points on the modified Fibonacci scale, by comparison against the
-published baseline anchor **01-S03 = 2 points** (see `../sizing.md`). Each estimate is
-scored on size, complexity, technology, and unknowns.
-
-| Story | Size | Rationale |
-|---|---|---|
-| 01-S01 | — (split) | Sized at 13: unknowns dominated, since no institution is confirmed to offer third-party personal-account access, and the story hid discovery, consent, token storage, refresh, and failure handling behind one sentence. Exceeded the splitting threshold, so it carries no estimate and is replaced by 01-S07, 01-S08, and 01-S09. |
-| 01-S07 | 3 | Modestly above the anchor. A listing driven by a table of which institutions support what; the work is establishing and maintaining that table honestly rather than building the view. No technology risk. |
-| 01-S08 | 8 | Four times the anchor, and the piece that inherits the parent's risk. Consent flow, token exchange, storage, and refresh are all new technology, and whether any institution offers this route to an individual at all remains unverified. Sized provisionally and re-estimated when the portal investigation returns; it may prove not to be buildable. |
-| 01-S09 | 3 | Above the anchor. Detecting staleness is a timestamp comparison; the work is propagating an age indicator into every total that depends on the account, which is breadth rather than difficulty. |
-| 01-S02 | 8 | Larger than the anchor on every dimension. Size covers file parsing, an interactive column mapping step, and mapping reuse; complexity comes from per-row error reporting that must not abort the import; unknowns are moderate, since real files vary more than documentation suggests. |
-| 01-S03 | **2** | **Baseline anchor.** One form, three fields, a local write, and sensible defaults. No new technology, no external dependency, and nothing unknown about it. Every other estimate in the product is expressed relative to this. |
-| 01-S04 | 5 | Roughly twice the anchor. Small in surface — a comparison and a confirmation prompt — but the matching rule needs deliberate design to avoid proposing false pairs, and declining a pair must be remembered, which is state the anchor does not have. |
-| 01-S05 | 3 | Slightly above the anchor. Structurally the same entry form with a direction and an availability date, reusing 01-S03's mechanics; the increment is the distinction between incoming and outgoing amounts flowing through later totals. |
-| 01-S06 | 3 | Above the anchor for aggregation rather than difficulty: reading several accounts, displaying each in its own currency without converting, and surfacing per-account freshness. No new technology and no meaningful unknowns. |

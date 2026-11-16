@@ -22,14 +22,14 @@
 
 ## 2. Rename 1-pagers to epics (file moves and headings only, no rewording)
 
-- [ ] 2.1 Run `git mv docs/one-pagers docs/epics`. Verify that all seven files keep their numbers and names.
-- [ ] 2.2 In each epic:
+- [x] 2.1 Run `git mv docs/one-pagers docs/epics`. Verify that all seven files keep their numbers and names.
+- [x] 2.2 In each epic:
   - change the title to just the initiative name, removing "— 1-Pager";
   - rename `### FUNCTIONAL REQUIREMENTS` to `### STORIES`;
   - delete the `### REQUIREMENTS SIZING` section.
 
   Verify that each file's `###` headings are exactly PROBLEM, ASSUMPTIONS, STORIES, NON-FUNCTIONAL REQUIREMENTS, in that order.
-- [ ] 2.3 Before rewording anything, save the list of story IDs in each epic to the scratchpad. Task 3.8 compares against this list. Verify that it holds 52 IDs.
+- [x] 2.3 Before rewording anything, save the list of story IDs in each epic to the scratchpad. Task 3.8 compares against this list. Verify that it holds 52 IDs.
 - [ ] 2.4 Stop for review. After it is accepted, commit this group on its own.
 
 ## 3. Rewrite each epic as situations and job stories

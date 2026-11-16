@@ -1,4 +1,4 @@
-# Security and Data Control — 1-Pager
+# Security and Data Control
 
 ### PROBLEM
 
@@ -39,7 +39,7 @@ without argument, negotiation, or a support request.
 - **Assumed.** Deletion means deletion. Retaining data after a deletion request for
   analytics or recovery is out of scope and is not done.
 
-### FUNCTIONAL REQUIREMENTS
+### STORIES
 
 * **06-S01** — **As** Patricia, **I want to** use every part of the product without linking
   any account **so that I can** keep my banking credentials to myself and still get the
@@ -107,17 +107,3 @@ without argument, negotiation, or a support request.
   amounts, or merchant names.
 - **Breach notification.** Affected users are notified within 72 hours of confirming a
   breach involving personal financial data.
-
-### REQUIREMENTS SIZING
-
-Story points on the modified Fibonacci scale, against the baseline anchor **01-S03 = 2
-points** (see `../sizing.md`).
-
-| Story | Size | Rationale |
-|---|---|---|
-| 06-S01 | 3 | Above the anchor, and small only because it is enforced continuously rather than built once. It is a constraint every other initiative must satisfy; the work here is the audit that proves nothing degrades without a connection, plus suppressing the prompt. Sized as the verification effort, not as new machinery. |
-| 06-S02 | 8 | Four times the anchor. Enumerating every access path in one place requires every subsystem to declare what it holds, and revocation must reach all of them and hold under partial failure. Complexity and breadth both high; unknowns moderate, since each subsystem revokes differently. |
-| 06-S03 | 3 | Modestly above the anchor. Platform biometric APIs are well documented and conventional; the increments are an idle timer and an equivalent session expiry on the web, which is a different mechanism for the same rule. |
-| 06-S04 | 5 | Two and a half times the anchor. Traversing every entity type into one portable format, with correct handling of currency and dates, over a volume that may not fit in memory. No new technology; complexity in completeness and in not corrupting the output. |
-| 06-S05 | 8 | Four times the anchor, and larger than it looks. Deletion must reach backups, derived aggregates, and anything held by a connected service, and must be provable rather than asserted. Unknowns are real: every store added later must be covered, so this creates an ongoing obligation. |
-| 06-S06 | 5 | Two and a half times the anchor. Recovery is standard in shape but unforgiving in detail — it must not become the weakest way into the account, which makes the security review the substantial part rather than the implementation. |

@@ -1,4 +1,4 @@
-# Investments and Net Worth — 1-Pager
+# Investments and Net Worth
 
 ### PROBLEM
 
@@ -50,7 +50,7 @@ worth.
 - **Assumed.** All holdings here belong to one person. Positions held jointly with others,
   and any splitting of units or fees between people, are explicitly out of scope.
 
-### FUNCTIONAL REQUIREMENTS
+### STORIES
 
 * **07-S01** — **As** Ezequiel, **I want to** record what I hold by entering it myself
   **so that I can** track my positions without connecting the product to my broker
@@ -112,17 +112,3 @@ worth.
   holding, or rebalancing, and displays no projection of future value.
 - **Valuation performance.** Revaluing 100 holdings and recomputing net worth completes
   within 1 second of prices arriving.
-
-### REQUIREMENTS SIZING
-
-Story points on the modified Fibonacci scale, against the baseline anchor **01-S03 = 2
-points** (see `../sizing.md`).
-
-| Story | Size | Rationale |
-|---|---|---|
-| 07-S01 | 3 | Modestly above the anchor. Structurally the same as 01-S03 — a form and a stored record — with high-precision fractional units as the only real increment. No external dependency, no unknowns. |
-| 07-S02 | 5 | Two and a half times the anchor. Integrating a price feed, scheduling refresh, caching per instrument, and surfacing staleness honestly. Technology is new and unknowns sit in the feed's limits and terms rather than in the code. |
-| 07-S03 | 5 | Comparable to 07-S02 for different reasons. Little technology risk, but the model must express flat and percentage fees, vary by asset class, and be edited without corrupting figures already derived from it. Complexity is in the model, not the interface. |
-| 07-S04 | 5 | Two and a half times the anchor. The gross-up is a formula, but the story carries a contribution record, fee derivation from 07-S03, and a per-contribution override path, and it is where cost basis becomes correct or permanently wrong. |
-| 07-S05 | 3 | Above the anchor, and cheap only because 07-S02 and 07-S03 already supply the price and the fee rules. What remains is composing them and itemising the deductions. Its value is high and its incremental cost is not. |
-| 07-S06 | 3 | Modestly above the anchor. Adds two established figures and depends on 05-S02 for the conversion and its provenance. Breadth, not difficulty; unknowns none. |

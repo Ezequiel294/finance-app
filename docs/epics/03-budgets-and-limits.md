@@ -1,4 +1,4 @@
-# Budgets and Limits — 1-Pager
+# Budgets and Limits
 
 ### PROBLEM
 
@@ -63,7 +63,7 @@ about who spent what, which neither of them can answer at the end of the month.
 - **Assumed.** Limits are advisory. Nothing in the product blocks or declines a
   transaction, and no story here implies it could.
 
-### FUNCTIONAL REQUIREMENTS
+### STORIES
 
 * **03-S01** — **As** Daniela, **I want to** be warned that I am running down the money I
   had for the month **so that I can** change what I do while it still makes a difference
@@ -175,23 +175,3 @@ about who spent what, which neither of them can answer at the end of the month.
   way to see where it came from.
 - **Advisory only.** No limit, warning, or projection blocks, delays, or modifies any
   transaction.
-
-### REQUIREMENTS SIZING
-
-Story points on the modified Fibonacci scale, against the baseline anchor **01-S03 = 2
-points** (see `../sizing.md`).
-
-| Story | Size | Rationale |
-|---|---|---|
-| 03-S01 | 5 | Two and a half times the anchor. The threshold arithmetic is trivial; the cost is delivery — evaluating on every incoming transaction, holding per-period state so a warning fires once, and per-budget silencing. Technology is familiar, unknowns low. |
-| 03-S02 | 3 | Modestly above the anchor. Limits attach to groups that 02-S02 already established, so this is configuration plus a progress view. Breadth rather than difficulty, and no new technology. |
-| 03-S03 | 8 | Four times the anchor. Complexity is the driver: the figure depends on commitments from 03-S06, on the period boundary, and on a deliberate exclusion of anticipated income that must survive contact with users who expect it counted. The requirement to show the derivation is as much work as the derivation. |
-| 03-S04 | 5 | Half again above 03-S02 and comparable to 03-S01. The arithmetic is simple division; the work is choosing a defensible spending rate, letting the user change its basis, and presenting a projection without implying a forecast. Moderate unknowns in what rate proves sensible. |
-| 03-S05 | — (split) | Sized at 13: size and complexity both large and the unknowns structural. It introduced a second identity, an invitation flow, an authorization boundary that must hold under revocation, and a partial-visibility rule every existing query has to respect. Exceeded the splitting threshold, so it carries no estimate and is replaced by 03-S07, 03-S08, and 03-S09. |
-| 03-S07 | 5 | Two and a half times the anchor. Invitation and acceptance are conventional, but this is where the authorization boundary is established and every later query depends on it being right. Complexity sits in the boundary, not the flow. |
-| 03-S08 | 3 | Modestly above the anchor. Attribution follows from the originating account once 03-S07 exists, so this is a derived field plus a per-participant total over data already present. |
-| 03-S09 | 5 | Two and a half times the anchor. Revocation must reach every path opened by 03-S07 and hold under partial failure, and disclosing what the other person loses is part of the work. Comparable to 03-S07 for the same reason. |
-| 03-S06 | 5 | Two and a half times the anchor. Detecting repetition across varying amounts and dates is real work, and the confirmation step plus manual addition adds surface. No new technology; unknowns concentrated in what counts as a recurrence. |
-| 03-S10 | 5 | Two and a half times the anchor. The period model is small to state and pervasive to honour: every limit, warning, progress figure, and total has to resolve against a period that may be a week, a month, or a year, and weekly periods do not align to month boundaries. Complexity in the boundary arithmetic rather than the interface. |
-| 03-S11 | 3 | Modestly above the anchor. The arithmetic is one division. The work is presenting it wherever a budget appears and making beyond-100% read correctly in components built on the assumption that progress stops at full. |
-| 03-S12 | 5 | Two and a half times the anchor. Depends on 03-S10 for the periods and 03-S06 for commitments, then projects across the periods remaining in the year. The arithmetic is simple; stating a figure that assumes adherence without it being read as a prediction is the part that needs care. |

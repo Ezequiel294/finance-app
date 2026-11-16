@@ -1,4 +1,4 @@
-# Dashboard and Insights — 1-Pager
+# Dashboard and Insights
 
 ### PROBLEM
 
@@ -40,7 +40,7 @@ and no chart of categories will settle it.
   front of both kinds of user; if it cannot, the view splits rather than accumulating
   controls.
 
-### FUNCTIONAL REQUIREMENTS
+### STORIES
 
 * **04-S01** — **As** Daniela, **I want to** see where last month's money went **so that I
   can** learn something about my spending without having recorded any of it
@@ -96,17 +96,3 @@ and no chart of categories will settle it.
 - **No silent currency mixing.** A total spanning currencies never presents a single
   figure without stating the conversion basis and the rate date.
 - **Derivation.** Every figure can be expanded to the transactions that produced it.
-
-### REQUIREMENTS SIZING
-
-Story points on the modified Fibonacci scale, against the baseline anchor **01-S03 = 2
-points** (see `../sizing.md`).
-
-| Story | Size | Rationale |
-|---|---|---|
-| 04-S01 | 5 | Two and a half times the anchor. Aggregation is straightforward, but this establishes the charting approach for the product — a cross-platform rendering choice that constrains every later view. Technology carries the weight; the first chart costs several times what the second does. |
-| 04-S02 | 5 | Comparable to 04-S01 and for different reasons. Period boundaries, incomplete trailing periods, and stating a difference rather than showing two numbers are all fiddly. Low technology risk once 04-S01 lands, moderate complexity. |
-| 04-S03 | 3 | Above the anchor but modest. Reuses the aggregation and rendering established by 04-S01 over the second dimension from 02-S02, plus a limit overlay. Breadth rather than novelty. |
-| 04-S04 | 5 | Two and a half times the anchor. Not difficult individually but cross-cutting: every view must carry its filter state into a shared list, which is a constraint on all of them rather than a feature of one. Unknowns low, complexity in the plumbing. |
-| 04-S05 | 3 | Modestly above the anchor, and cheap only because 03-S05 has already established shared budgets and per-person attribution. Without that it would be far larger; as written it is one breakdown over data that exists. |
-| 04-S06 | 3 | Above the anchor for the same reasons as 04-S03. Two series on one timeline using established rendering; the only real care is making periods with no income read as zero rather than missing. |

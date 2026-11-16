@@ -1,4 +1,4 @@
-# Categorization and Rules — 1-Pager
+# Categorization and Rules
 
 ### PROBLEM
 
@@ -48,7 +48,7 @@ reading the prompt and starts tapping it away.
 - **Assumed.** A transaction belongs to at most one group. Splitting a single charge
   across two groups is deliberately out of scope until someone asks for it.
 
-### FUNCTIONAL REQUIREMENTS
+### STORIES
 
 * **02-S01** — **As** Ezequiel, **I want to** be asked which group a charge belongs to at
   the time it is charged **so that I can** answer while I still remember what I bought
@@ -123,18 +123,3 @@ reading the prompt and starts tapping it away.
   by hand, under any circumstance.
 - **Privacy of prompting.** A notification prompt discloses no amount or merchant on a
   locked screen unless the user has explicitly enabled that.
-
-### REQUIREMENTS SIZING
-
-Story points on the modified Fibonacci scale, against the baseline anchor **01-S03 = 2
-points** (see `../sizing.md`).
-
-| Story | Size | Rationale |
-|---|---|---|
-| 02-S01 | 8 | Small in interface and large in everything else. Complexity and technology both rise sharply: it depends on background delivery of a charge, differs per platform, and at least one platform may not permit it at all. Not 13 only because the fallback — prompting when the app is next opened — is well understood and bounds the downside. |
-| 02-S02 | 5 | Two and a half times the anchor. The data change is small but pervasive: a second dimension on every transaction, every filter, and every total. Low unknowns, moderate complexity, no new technology — the cost is breadth rather than difficulty. |
-| 02-S03 | 8 | Four times the anchor. Normalising inconsistent merchant descriptors and deciding what counts as confident enough to assign is genuine algorithmic work, and the requirement to leave uncertain transactions alone is harder than assigning a best guess. Unknowns are real: accuracy cannot be predicted before seeing live data. |
-| 02-S04 | 5 | Comparable to 02-S02. Ordinary create-read-update work over a rule list, plus an evaluation order that must be visible and predictable. No new technology; complexity concentrated in making precedence understandable. |
-| 02-S05 | 3 | Modestly above the anchor. It reuses the rule machinery from 02-S04 and adds a choice of scope and a retroactive pass. Small, but its three-way scope decision is more than the anchor's single write. |
-| 02-S06 | 2 | Equal to the anchor. A filtered list, a count, and in-place editing, all over data and controls that already exist. No new technology, no unknowns. |
-| 02-S07 | 3 | Modestly above the anchor, and small only because 02-S04 already supplies the rule machinery. The work is the interaction between two existing features — a rule must suppress a prompt — plus offering to create a default from the prompt itself and making silent filings visible and reversible. No new technology; the care is in not hiding transactions from the user. |

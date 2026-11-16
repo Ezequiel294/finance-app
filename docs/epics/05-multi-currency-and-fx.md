@@ -1,4 +1,4 @@
-# Multi-Currency and Account Roles — 1-Pager
+# Multi-Currency and Account Roles
 
 ### PROBLEM
 
@@ -47,7 +47,7 @@ to touch, one is the small float he spends from.
   usage grows. Settled by reading the terms attached to each endpoint and recording what
   they permit.
 
-### FUNCTIONAL REQUIREMENTS
+### STORIES
 
 * **05-S01** — **As** Ezequiel, **I want to** see every amount in the currency it actually
   occurred in **so that I can** check any figure against my bank statement
@@ -117,17 +117,3 @@ to touch, one is the small float he spends from.
 - **Transfer detection safety.** Zero transaction pairs are excluded from spending without
   explicit confirmation. A false exclusion understates spending silently, so the product
   never acts on a probable match on its own.
-
-### REQUIREMENTS SIZING
-
-Story points on the modified Fibonacci scale, against the baseline anchor **01-S03 = 2
-points** (see `../sizing.md`).
-
-| Story | Size | Rationale |
-|---|---|---|
-| 05-S01 | 5 | Two and a half times the anchor, and pervasive rather than hard. Amount and currency travel together through every list, total, and view, and the prohibition on replacing the original constrains all of them. No new technology; the cost is breadth and the discipline of never collapsing the pair. |
-| 05-S02 | 5 | Comparable to 05-S01. Integrating a rate source, caching per date, and surfacing provenance on every converted figure. Technology is new but the endpoints are documented and verified to exist; unknowns are mainly in their terms of use. |
-| 05-S03 | 8 | Four times the anchor. Complexity dominates: pairing across accounts, across currencies where amounts legitimately differ, and across a time gap, with a false positive silently understating spending. Related to 01-S04 but materially harder, since matching amounts cannot be relied on. |
-| 05-S04 | 3 | Modestly above the anchor. Roles are a small attribute; the work is that budgets and warnings must consult them, which is a handful of touchpoints rather than new machinery. Low unknowns. |
-| 05-S05 | 5 | Two and a half times the anchor. Depends on both 05-S02 for the published rate and 05-S03 for identifying the transfer, then compares applied against published. The arithmetic is simple; establishing which rate was actually applied from the data available is not. |
-| 05-S06 | 3 | Above the anchor. Extends the import mapping from 01-S02 with currency detection and per-row handling. Contained, reuses existing machinery, and carries no new technology. |
