@@ -42,7 +42,7 @@ Do the same steps in each epic:
 - Check the epic with `grep -nE 'Ezequiel|Daniela|Patricia|Andrés|Keisy|[Pp]ersonas?([^a-z]|$)|story points?|[0-9]+ points?|Sized at|baseline anchor' <file>`. It must find nothing. The pattern skips everyday words such as "personal" and "floating point".
 - Stop for review after each epic. Commit each epic on its own.
 
-- [ ] 3.1 `01-accounts-and-transaction-ingestion.md`, including the split note on `01-S01`
+- [x] 3.1 `01-accounts-and-transaction-ingestion.md`, including the split note on `01-S01`
 - [ ] 3.2 `02-categorization-and-rules.md`
 - [ ] 3.3 `03-budgets-and-limits.md`, including:
   - the split note on `03-S05`;

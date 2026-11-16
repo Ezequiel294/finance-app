@@ -2,26 +2,22 @@
 
 ### PROBLEM
 
-Ezequiel holds money at two banks and spends from a third account he tops up by hand, and
-none of those institutions will hand a personal application a list of what he spent. So
-every few weeks he sits down with his statements and types his own transactions into a
-spreadsheet, which is the single reason his records are accurate for about a week after
-he updates them and wrong for the three weeks that follow. He has tried a consumer
-tracker that promised to do this for him; it captured some transactions, missed others,
-and gave him no way to tell which was which, so he stopped trusting it and went back to
-typing. Patricia has the same underlying problem from the opposite direction: her bank
-does publish her statements, she downloads them every month, and she has decided she will
-not give any application her banking password to get at them any faster.
+People who hold money at several banks, and spend from an account they top up by hand,
+often find that none of their banks will give a personal application a list of what they
+spent. So every few weeks they type their transactions into a spreadsheet by hand, and
+their records are right for about a week after each update and wrong for the weeks after.
+Consumer trackers that promise to do this capture some transactions and miss others, with
+no way to tell which, so people stop trusting them and go back to typing. Other people
+can download their statements every month but refuse to give any application their
+banking password to get them faster.
 
-What neither of them has is a way to get transactions into one place that matches what
-their banks are actually willing to give. A product that only works when a bank exposes a
-data connection is useless to Patricia by her own choice and useless to Ezequiel by his
-bank's, and a product that only accepts hand-typed entry is the spreadsheet again with a
-worse editor. What is missing is a single place where transactions arrive by whatever
-route is available for that account — a connection where one exists, a downloaded
-statement file where it does not, and a few seconds of typing for the coffee nobody will
-ever see a record of — with the product keeping them straight when the same purchase
-turns up twice by two different routes.
+What is missing is one place where transactions arrive by whatever route each account
+allows. A product that only works through a bank connection is useless when the bank
+offers none or the person refuses to link one. A product that only takes hand-typed
+entries is the spreadsheet again with a worse editor. Transactions need to arrive through
+a connection where one exists, a downloaded statement where it does not, and a few
+seconds of typing for the cash payment no bank records, with the product keeping them
+straight when the same purchase arrives twice by two routes.
 
 ### ASSUMPTIONS
 
@@ -54,8 +50,9 @@ turns up twice by two different routes.
 
 ### STORIES
 
-* **01-S01** — **As** Ezequiel, **I want to** connect an account at my bank **so that I
-  can** have transactions appear without typing them in myself
+* **01-S01** — **When** my money is spread across several banks and I keep my records by
+  typing in what they show me, **I want to** connect an account at my bank, **so that** I
+  can have transactions appear without typing them in myself.
   * The product states plainly which institutions can be connected and which cannot,
     rather than failing at the end of the attempt
   * A connection that cannot be offered for an institution says so before any credential
@@ -63,60 +60,66 @@ turns up twice by two different routes.
   * An account whose connection later stops working is shown as stale, with the date of
     the last transaction received
 
-  > **Split.** Sized at 13 and therefore too large to estimate reliably. Replaced for
-  > implementation by **01-S07**, **01-S08**, and **01-S09** below. Retained here because it states the need those
-  > stories exist to serve.
+  > **Split.** Replaced by **01-S07**, **01-S08**, and **01-S09** below. Kept here because
+  > it states the need those stories exist to serve.
 
-* **01-S02** — **As** Patricia, **I want to** import a statement file I downloaded from my
-  bank **so that I can** use the product without giving it access to my account
-  * The importer accepts a delimited file and lets her map its columns to amount, date,
-    description, and currency the first time she uses a given layout
+* **01-S02** — **When** my bank lets me download statements but I won't give an
+  application my banking password, **I want to** import a statement file I downloaded
+  from my bank, **so that** I can use the product without giving it access to my account.
+  * The importer accepts a delimited file and lets the person map its columns to amount,
+    date, description, and currency the first time they use a given layout
   * A saved mapping is reused automatically on the next import from the same institution
   * Rows that cannot be read are reported individually with the reason, and the rest of
     the file still imports
 
-* **01-S03** — **As** Daniela, **I want to** add a transaction by hand in a few seconds
-  **so that I can** record a cash payment before I forget it
+* **01-S03** — **When** I have just paid in cash and no bank will ever show the payment,
+  **I want to** add a transaction by hand in a few seconds, **so that** I can record a
+  cash payment before I forget it.
   * Amount and date are the only entries required; everything else may be left for later
   * The date defaults to today and the currency to the account's own currency
-  * The entry can be completed without leaving the screen she started from
+  * The entry can be completed without leaving the screen the person started from
 
-* **01-S04** — **As** Ezequiel, **I want to** be shown transactions that look like
-  duplicates of each other **so that I can** keep one record per purchase when the same
-  charge arrives by two routes
+* **01-S04** — **When** the same account's transactions reach the product by more than
+  one route, **I want to** be shown transactions that look like duplicates of each other,
+  **so that** I can keep one record per purchase when the same charge arrives by two
+  routes.
   * Candidates are proposed on matching amount, currency, and a date within a short window
-  * Nothing is merged without him confirming it
-  * A pair he declines to merge is not proposed again
+  * Nothing is merged without the person confirming it
+  * A pair the person declines to merge is not proposed again
 
-* **01-S05** — **As** Andrés, **I want to** record a payment that has arrived from a client
-  **so that I can** have money coming in counted as well as money going out
+* **01-S05** — **When** I am paid by clients whenever their invoices clear, **I want to**
+  record a payment that has arrived from a client, **so that** I can have money coming in
+  counted as well as money going out.
   * Incoming amounts are recorded against an account and are distinguishable from spending
   * A payment can be recorded in the currency it arrived in
   * The date recorded is the date the money became available, which may differ from the
     invoice date
 
-* **01-S06** — **As** Ezequiel, **I want to** see every account I hold and its current
-  balance in one list **so that I can** know where my money is without opening three
-  banking applications
+* **01-S06** — **When** my money sits in accounts at several institutions, **I want to**
+  see every account I hold and its current balance in one list, **so that** I can know
+  where my money is without opening three banking applications.
   * Each account shows its balance in its own currency
   * Accounts from different institutions appear in one list
   * The list shows when each account's information was last updated
 
-* **01-S07** — **As** Ezequiel, **I want to** see which of my institutions can be connected
-  and which cannot **so that I can** find out where I stand before attempting anything
+* **01-S07** — **When** I am working out how to get each institution's transactions into
+  the product, **I want to** see which of my institutions can be connected and which
+  cannot, **so that** I can find out where I stand before attempting anything.
   * Each institution is listed as connectable, import-only, or manual-only
   * The listing states what a connection would provide where one exists
   * An institution with no connection available says so plainly rather than failing later
 
-* **01-S08** — **As** Ezequiel, **I want to** authorise a connection to an institution that
-  supports one **so that I can** have its transactions arrive without my typing them
+* **01-S08** — **When** one of my institutions supports a connection, **I want to**
+  authorise a connection to an institution that supports one, **so that** I can have its
+  transactions arrive without my typing them.
   * Authorisation happens through the institution, and the product never sees a password
   * Access granted is revocable from within the product at any time
   * A failed or declined authorisation leaves the account fully usable by import and by
     manual entry
 
-* **01-S09** — **As** Ezequiel, **I want to** be told when a connection has stopped working
-  **so that I can** notice before I rely on figures that quietly stopped updating
+* **01-S09** — **When** I rely on a connection to bring in an account's transactions,
+  **I want to** be told when a connection has stopped working, **so that** I can notice
+  before I rely on figures that quietly stopped updating.
   * A stale connection is marked with the date of the last transaction received
   * Totals derived from a stale account state their age
   * Re-authorising is reachable from the notice itself
