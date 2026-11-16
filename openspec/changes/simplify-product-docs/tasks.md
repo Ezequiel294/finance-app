@@ -49,7 +49,7 @@ Do the same steps in each epic:
   - the nested-budgets assumption, which is now settled by asking people who budget over several periods at once.
 - [x] 3.4 `04-dashboard-and-insights.md`, including the single-summary-view assumption, which now compares someone who wants one fact with someone who wants to compare and drill in
 - [x] 3.5 `05-multi-currency-and-fx.md`
-- [ ] 3.6 `06-security-and-data-control.md`
+- [x] 3.6 `06-security-and-data-control.md`
 - [ ] 3.7 `07-investments-and-net-worth.md`
 - [ ] 3.8 Compare the story IDs in `docs/epics/` with the list saved in 2.3. Verify that all 52 are still there, none is renumbered, and both split stories still say "Replaced by".
 

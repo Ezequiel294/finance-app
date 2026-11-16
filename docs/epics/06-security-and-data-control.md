@@ -2,24 +2,22 @@
 
 ### PROBLEM
 
-Patricia has already decided. She read about applications that ask for the username and
-password to her bank and hold them in order to fetch her transactions, and she is not
-going to do that — not because she misunderstands the technology, but because she
-understands it well enough to know that standing access to her account is exactly what
-she would be handing over. She is not looking to be reassured, and a product that tries
-to talk her out of the position will lose her at that screen. She is entirely willing to
-download her own statements and hand over a file, which gives the product everything it
-needs and gives away nothing she is not prepared to give.
+Some people have already decided never to give an application the username and password
+to their bank so it can fetch their transactions. They don't misunderstand the
+technology. They understand it well enough to know that standing access to their account
+is exactly what they would hand over. They don't want to be reassured, and a product that
+tries to talk them out of it loses them at that screen. They are willing to download
+their own statements and hand over a file, which gives the product everything it needs
+and gives away nothing they aren't prepared to give.
 
-The failure this guards against is a product that treats linking an account as the real
-path and everything else as a degraded one — where the unlinked experience is a stub, the
-interface nags, and half the views say they need a connection. For Patricia that is not a
-lesser version of the product; it is a product she cannot use. For Ezequiel the same
-requirement arrives from a different direction: he carries this on a phone that goes
-everywhere with him, and a phone that can be picked up and opened reveals every account
-he holds, what he earns, and where he shops. Both of them want the same underlying thing,
-which is to decide what the product may see and to be able to change their mind later
-without argument, negotiation, or a support request.
+The failure to guard against is a product that treats linking an account as the real path
+and everything else as second best: the unlinked experience is a stub, the interface
+nags, and half the views say they need a connection. For someone who won't link, that
+isn't a lesser product; it is one they can't use. The same need comes from another
+direction for people who carry their finances on a phone that goes everywhere with them:
+a phone that can be picked up and opened reveals every account they hold, what they earn,
+and where they shop. Both want the same thing: to decide what the product may see, and to
+change their mind later without argument, negotiation, or a support request.
 
 ### ASSUMPTIONS
 
@@ -41,46 +39,53 @@ without argument, negotiation, or a support request.
 
 ### STORIES
 
-* **06-S01** — **As** Patricia, **I want to** use every part of the product without linking
-  any account **so that I can** keep my banking credentials to myself and still get the
-  whole benefit
+* **06-S01** — **When** I have decided never to give an application my banking
+  credentials, **I want to** use every part of the product without linking any account,
+  **so that** I can keep my banking credentials to myself and still get the whole benefit.
   * No view, total, or budget is unavailable or degraded solely because no account is
     connected
-  * The product does not prompt her to connect an account after she has declined once
+  * The product does not prompt the person to connect an account after they have declined
+    once
   * Any capability that genuinely requires a connection states so plainly at the point of
     use, rather than appearing broken
 
-* **06-S02** — **As** Patricia, **I want to** see exactly what the product can currently
-  access and withdraw any of it immediately **so that I can** decide what it may see and
-  change my mind whenever I want
+* **06-S02** — **When** I have given the product access to some of my information, **I want
+  to** see exactly what the product can currently access and withdraw any of it
+  immediately, **so that** I can decide what it may see and change my mind whenever I
+  want.
   * One screen lists every connection, import source, and shared budget, and what each
     exposes
   * Revoking takes effect immediately, without a support request or a waiting period
   * Revoking states plainly what will stop working and what data is removed
 
-* **06-S03** — **As** Ezequiel, **I want to** require my device's own lock before the
-  product opens **so that I can** hand someone my phone without handing them my finances
+* **06-S03** — **When** my finances are on a phone that others can pick up, **I want to**
+  require my device's own lock before the product opens, **so that** I can hand someone my
+  phone without handing them my finances.
   * Uses the device's existing biometric or passcode mechanism rather than a separate
     password
-  * Locks again after a period of inactivity that he sets
+  * Locks again after a period of inactivity that the person sets
   * Locking is enforced on the web as well, by ending an idle session
 
-* **06-S04** — **As** Patricia, **I want to** take all my data out in a format I can open
-  elsewhere **so that I can** leave whenever I choose without losing what I have recorded
+* **06-S04** — **When** I might want to stop using the product one day, **I want to** take
+  all my data out in a format I can open elsewhere, **so that** I can leave whenever I
+  choose without losing what I have recorded.
   * Export covers transactions, categories, groups, budgets, and holdings
   * The format opens in a spreadsheet application with no conversion step
   * Export completes without needing to contact anyone
 
-* **06-S05** — **As** Patricia, **I want to** delete my data and know it is gone **so that
-  I can** end my relationship with the product completely
-  * Deletion covers everything held about her, including anything derived from her data
-  * She is told what will be deleted before confirming, and how long it takes
-  * Completion is confirmed to her rather than assumed
+* **06-S05** — **When** I have decided to stop using the product, **I want to** delete my
+  data and know it is gone, **so that** I can end my relationship with the product
+  completely.
+  * Deletion covers everything held about the person, including anything derived from
+    their data
+  * The person is told what will be deleted before confirming, and how long it takes
+  * Completion is confirmed to the person rather than assumed
 
-* **06-S06** — **As** Daniela, **I want to** get back into my account if I lose my phone
-  **so that I can** recover without losing everything I have recorded
+* **06-S06** — **When** I have lost the phone I use the product on, **I want to** get back
+  into my account if I lose my phone, **so that** I can recover without losing everything
+  I have recorded.
   * Recovery does not depend on the lost device
-  * Recovery does not require exposing her data to anyone
+  * Recovery does not require exposing the person's data to anyone
   * A recovered session requires the lock in 06-S03 to be re-established before use
 
 ### NON-FUNCTIONAL REQUIREMENTS
