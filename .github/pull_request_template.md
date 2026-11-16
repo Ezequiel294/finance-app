@@ -27,11 +27,10 @@ branches, delete the sections that do not apply.
 
 - [ ] Every task in the change is complete and every automated test passes
 - [ ] `openspec validate <change-name> --strict` passes
-- [ ] Every applicable non-functional requirement from the 1-pager is met, or deferred to a follow-up story recorded in the 1-pager and named in `design.md`
+- [ ] Every applicable non-functional requirement from the epic is met, or deferred to a follow-up story recorded in the epic and named in `design.md`
 - [ ] `docs/architecture.md` is updated, or the change made no structural decision
 - [ ] The change is archived on this branch
-- [ ] The status table in `docs/README.md` is refreshed on this branch
-- [ ] The story is removed from `docs/backlog.md` on this branch
+- [ ] The story is removed from `docs/backlog.md` on this branch, if it was listed
 
 ## After merging
 

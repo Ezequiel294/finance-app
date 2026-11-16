@@ -8,9 +8,21 @@ context: |
   valued at live prices net of fees.
 
   Documentation rules live in openspec/specs/documentation/ and govern how the
-  vision, personas, 1-pagers, user stories, and sizing are written, read, and
-  updated. Read the relevant capability there before authoring or revising any
-  document under docs/.
+  documents under docs/ are written, read, and updated. docs/vision.md states what
+  the product is and who it is for, with principles every story must follow and
+  non-goals it must not serve. docs/epics/ holds one file per epic: the situations
+  it addresses, its assumptions, its stories ("When..., I want to..., so that..."),
+  and its non-functional requirements. docs/backlog.md lists only the stories to
+  take up next, in order. Read the relevant capability there before authoring or
+  revising any document under docs/.
+
+  Routing new work (documentation/epics): when exploring a new idea, decide where
+  it belongs before writing anything. First check it against the vision, its
+  principles, and its non-goals. If it is part of a story not yet built, add it to
+  that story as a detail bullet. If an existing epic's PROBLEM covers it, add one
+  or more stories to that epic. Otherwise create a new epic. Decide by fit, not by
+  size: size only decides how many stories an idea becomes. A story about to be
+  built may be written into its epic as the first step of its change.
 
   Delivery rules live in openspec/specs/process/ and govern how a story becomes
   working software. A product change realizes exactly one story and is built as
@@ -28,26 +40,40 @@ context: |
   started otherwise. Product capability specs are every spec outside the
   documentation/ and process/ domains.
 
+  Writing style for every change artifact: short sentences, one idea each.
+  Everyday words; explain any term you must use. Active voice: say who does what.
+
 rules:
   proposal:
     - "For a product change, name exactly one story identifier (<NN>-S<NN>) that the change realizes, and name the change <story-id>-<slug> in lowercase."
     - "Before proposing a product change, confirm the story meets the Definition of Ready in process/backlog-flow; if it does not, stop and state what is missing instead of proposing."
-    - "List product capabilities as <epic-slug>/<capability>, where <epic-slug> is the 1-pager file name without its ordinal. Search openspec/specs/ first and prefer modifying an existing capability over creating a new one."
+    - "List product capabilities as <epic-slug>/<capability>, where <epic-slug> is the epic file name in docs/epics/ without its ordinal. Search openspec/specs/ first and prefer modifying an existing capability over creating a new one."
+    - "If the story doesn't exist yet or has no detail bullets, write it into its epic first and commit it with the planning files."
+    - "At most 250 words."
+    - "Why: at most 3 sentences. What Changes: one line per change."
+    - "Use bullets and tables, not paragraphs. Don't restate the story, the epic, or the specs; link to them."
   specs:
     - "Carry every detail bullet under the story into at least one scenario, and include no scenario that traces to nothing in the story."
     - "In a product capability spec, end each requirement's description with a line of the form 'Realizes: <NN>-S<NN>' listing every story that shaped it. When modifying a requirement, keep its existing citations and add the new one."
     - "Describe observable behavior only. Frameworks, libraries, modules, and tables belong in design.md and docs/architecture.md."
+    - "Use plain wording, but never drop a requirement, scenario, or detail to make a spec shorter. Covering everything matters more than length."
   design:
     - "For a story change, list the planned slices and the layers each one touches."
     - "If this is the first product change, choose the stack, create docs/architecture.md, and update .gitignore to admit the source directories."
     - "If the design makes a structural decision, state the update it makes to docs/architecture.md."
-    - "Name the non-functional requirements from the story's 1-pager that apply to it, and for each say how it is met or which follow-up story defers it."
+    - "Name the non-functional requirements from the story's epic that apply to it, and for each say how it is met or which follow-up story defers it."
+    - "At most 500 words, not counting diagrams and tables."
+    - "Decisions go in a table: Decision | Why | Rejected option. One short line per cell."
+    - "Leave out any template section with nothing to say."
+    - "Use bullets and tables, not paragraphs. Don't restate the story, the epic, or the specs; link to them."
+    - "For a story change, include at least one Mermaid sequence diagram of the story's main flow, from the person through each layer and back."
   tasks:
     - "For a story change, structure tasks as '## N. Slice N: <observable behavior>' groups followed by a final '## N. Done' group."
     - "Each slice starts with tasks that write failing tests for its scenarios, continues with only the data, backend, and interface tasks that slice needs, and ends with a verify task that runs the whole test suite and lists demo steps."
     - "Every slice after the first includes a task for a test that exercises it together with an earlier slice."
     - "Never group tasks by layer for the whole story, and never build anything ahead of the slice that first needs it."
-    - "The Done group covers openspec validate --strict, the applicable non-functional requirements, docs/architecture.md, archiving, refreshing the docs/README.md status table, and removing the story from docs/backlog.md."
+    - "The Done group covers openspec validate --strict, the applicable non-functional requirements, docs/architecture.md, archiving, and removing the story from docs/backlog.md if it is listed there."
+    - "Use plain wording, but keep every step and its verification. Covering everything matters more than length."
 
 operations:
   apply:
@@ -58,5 +84,4 @@ operations:
       - "If a slice proves too large to review comfortably, propose splitting the remaining work in tasks.md before continuing."
   archive:
     guidance:
-      - "After archiving, refresh the implementation status table in docs/README.md from the specs."
-      - "Remove the realized story from docs/backlog.md in the same commit as the archive."
+      - "If the realized story is listed in docs/backlog.md, remove it in the same commit as the archive."

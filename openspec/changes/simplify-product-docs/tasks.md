@@ -73,7 +73,7 @@ Do the same steps in each epic:
 
 ## 5. Configuration, writing rules, and pull request template
 
-- [ ] 5.1 Rewrite the documentation paragraph in the `context` of `openspec/config.yaml`. It describes the vision with its principles and non-goals, the epics in `docs/epics/`, and the backlog as the list of what comes next.
+- [x] 5.1 Rewrite the documentation paragraph in the `context` of `openspec/config.yaml`. It describes the vision with its principles and non-goals, the epics in `docs/epics/`, and the backlog as the list of what comes next.
 
   Add a routing paragraph for explore to follow:
   - first check the vision;
@@ -84,7 +84,7 @@ Do the same steps in each epic:
   - a story about to be built may be written into its epic as the first step of its change.
 
   Verify that `openspec instructions proposal --change simplify-product-docs --json` shows the new context.
-- [ ] 5.2 Update the rules in `openspec/config.yaml`:
+- [x] 5.2 Update the rules in `openspec/config.yaml`:
   - Proposal: `<epic-slug>` comes from the epic file in `docs/epics/`.
   - Proposal, new rule: if the story doesn't exist yet or has no detail bullets, write it into its epic first and commit it with the planning files.
   - Design: read the non-functional requirements from the story's epic.
@@ -92,7 +92,7 @@ Do the same steps in each epic:
   - Archive guidance: delete the status-table line, and remove the story from the backlog only if it is listed there.
 
   Verify that `grep -nE '1-pager|status table' openspec/config.yaml` finds nothing.
-- [ ] 5.3 Add the writing rules to `openspec/config.yaml`, using this exact text.
+- [x] 5.3 Add the writing rules to `openspec/config.yaml`, using this exact text.
   - In `context`: "Writing style for every change artifact: short sentences, one idea each. Everyday words; explain any term you must use. Active voice: say who does what."
   - Under `rules.proposal`:
     - "At most 250 words."
@@ -108,13 +108,13 @@ Do the same steps in each epic:
   - Under `rules.tasks`: "Use plain wording, but keep every step and its verification. Covering everything matters more than length."
 
   Verify that `openspec instructions design --change simplify-product-docs --json` lists the new design rules, and that the same command for `proposal`, `specs`, and `tasks` lists theirs.
-- [ ] 5.4 Update `.github/pull_request_template.md`:
+- [x] 5.4 Update `.github/pull_request_template.md`:
   - delete the status-table checkbox;
   - change "1-pager" to "epic";
   - change backlog removal to "if listed".
 
   Verify that `grep -nE '1-pager|status table' .github/pull_request_template.md` finds nothing.
-- [ ] 5.5 Stop for review. After it is accepted, commit this group on its own.
+- [x] 5.5 Stop for review. After it is accepted, commit this group on its own.
 
 ## 6. Done
 
