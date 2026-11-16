@@ -2,24 +2,23 @@
 
 ### PROBLEM
 
-Ezequiel is paid in dollars and buys everything in colones, and every tool he has tried
-handles that by pretending one of those facts is not true. Some refuse a second currency
-outright. Others convert everything to a single display currency using a rate they do not
-name, on a date they do not state, so that the total he sees is a number he cannot check
-and did not authorise. Neither behaviour is acceptable to him for the same reason: a
-₡14,000 purchase was ₡14,000, and turning it into $27.40 without saying which rate was
-used on which day destroys the only figure he can verify against his statement.
+People paid in dollars who buy almost everything in colones find that every tool handles
+it by pretending one of those facts isn't true. Some refuse a second currency outright.
+Others convert everything to one display currency using a rate they don't name, on a date
+they don't state, so the total is a number nobody can check and nobody agreed to. Both
+fail for the same reason: a ₡14,000 purchase was ₡14,000, and turning it into $27.40
+without saying which rate was used on which day destroys the only figure that can be
+checked against the statement.
 
-Worse is what those tools do with his own money moving around. His card is attached to a
-small account he tops up by hand, precisely so that losing it cannot cost him much, which
-means several times a month he moves money from his dollar salary account into his colones
-spending account. Every tracker he has used records that as spending. It is not spending —
-he has exactly as much money after it as before, minus whatever the bank charged to do it
-— and counting it means his monthly totals are inflated by a number that has nothing to do
-with anything he bought. The same misreading applies to the money he moves into his
-untouchable envelopes at the other bank. What his accounts encode, and no tool reflects,
-is that they have different jobs: one holds salary, one holds savings he has decided not
-to touch, one is the small float he spends from.
+Worse is what those tools do when people move their own money around. Someone who ties
+their card to a small account and tops it up by hand, so that losing the card can't cost
+much, moves money from a dollar salary account into a colones spending account several
+times a month. Every tracker records that as spending. It isn't: they have as much money
+after as before, minus whatever the bank charged. Counting it inflates monthly totals by
+an amount that has nothing to do with anything bought. The same mistake happens with money
+moved into savings at another bank that the person has decided not to touch. Their
+accounts have different jobs, such as holding salary, holding savings, or being the small
+float they spend from, and no tool reflects that.
 
 ### ASSUMPTIONS
 
@@ -49,44 +48,48 @@ to touch, one is the small float he spends from.
 
 ### STORIES
 
-* **05-S01** — **As** Ezequiel, **I want to** see every amount in the currency it actually
-  occurred in **so that I can** check any figure against my bank statement
+* **05-S01** — **When** I earn in one currency and spend in another, **I want to** see
+  every amount in the currency it actually occurred in, **so that** I can check any figure
+  against my bank statement.
   * The original currency and amount are shown on every transaction and never replaced
   * Lists containing more than one currency show each in its own, without converting
   * A converted figure is always presented alongside the original, never instead of it
 
-* **05-S02** — **As** Ezequiel, **I want to** choose a currency for my totals and see which
-  rate produced them **so that I can** trust a combined figure enough to use it
-  * The display currency is his choice and can be changed at any time
+* **05-S02** — **When** I need one total across money held in more than one currency,
+  **I want to** choose a currency for my totals and see which rate produced them, **so
+  that** I can trust a combined figure enough to use it.
+  * The display currency is the person's choice and can be changed at any time
   * Any converted total states the rate used and the date it is from
   * The source of the rate is named
 
-* **05-S03** — **As** Ezequiel, **I want to** mark two movements as a transfer between my
-  own accounts **so that I can** stop my own money moving around being counted as
-  spending
-  * Candidate pairs are proposed across his accounts, including across currencies where
-    amounts differ
+* **05-S03** — **When** I move money between my own accounts, **I want to** mark two
+  movements as a transfer between my own accounts, **so that** I can stop my own money
+  moving around being counted as spending.
+  * Candidate pairs are proposed across the person's accounts, including across currencies
+    where amounts differ
   * A confirmed transfer is excluded from spending totals on both sides
   * Any cost incurred by the transfer is recorded separately and is visible as a cost
 
-* **05-S04** — **As** Ezequiel, **I want to** give each of my accounts a role **so that I
-  can** have the product understand that a small spending balance is deliberate rather
-  than a problem
-  * Each account carries a role he sets, such as savings he does not draw on, income, or
-    day-to-day spending
+* **05-S04** — **When** each of my accounts has a different job, such as holding salary,
+  holding savings, or being a small float I spend from, **I want to** give each of my
+  accounts a role, **so that** I can have the product understand that a small spending
+  balance is deliberate rather than a problem.
+  * Each account carries a role the person sets, such as savings they do not draw on,
+    income, or day-to-day spending
   * Warnings and budgets respect the role, so a deliberately small spending balance
     raises nothing
-  * A role can be changed at any time and is never assigned without him choosing it
+  * A role can be changed at any time and is never assigned without the person choosing it
 
-* **05-S05** — **As** Ezequiel, **I want to** see what a currency conversion actually cost
-  me **so that I can** know the price of moving my salary into what I spend from
+* **05-S05** — **When** I convert my salary into the currency I spend in, **I want to** see
+  what a currency conversion actually cost me, **so that** I can know the price of moving
+  my salary into what I spend from.
   * The cost is the difference between the rate applied and the published rate on that date
   * It is shown against the transfer that incurred it
-  * Conversion costs accumulate into a figure he can read for a period
+  * Conversion costs accumulate into a figure the person can read for a period
 
-* **05-S06** — **As** Patricia, **I want to** import a statement in a currency and have it
-  stay in that currency **so that I can** reconcile what I imported against the document I
-  downloaded
+* **05-S06** — **When** I bring in a statement issued in a particular currency, **I want
+  to** import a statement in a currency and have it stay in that currency, **so that** I
+  can reconcile what I imported against the document I downloaded.
   * The currency of an imported file is detected or asked for once per mapping
   * Imported amounts are never converted on import
   * An import mixing currencies in one file is handled per row rather than refused
