@@ -43,7 +43,7 @@ Do the same steps in each epic:
 - Stop for review after each epic. Commit each epic on its own.
 
 - [x] 3.1 `01-accounts-and-transaction-ingestion.md`, including the split note on `01-S01`
-- [ ] 3.2 `02-categorization-and-rules.md`
+- [x] 3.2 `02-categorization-and-rules.md`
 - [ ] 3.3 `03-budgets-and-limits.md`, including:
   - the split note on `03-S05`;
   - the nested-budgets assumption, which is now settled by asking people who budget over several periods at once.

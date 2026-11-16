@@ -2,28 +2,23 @@
 
 ### PROBLEM
 
-Ezequiel's spending falls into two questions at once, and existing tools only ever ask
-him one. A ₡14,000 supermarket charge is groceries — that is what it was — but it also
-belongs to the money he has set aside for living away from his parents, which is a
-different question with a different budget behind it, and which has nothing to do with
-whether the next groceries charge belongs there too. Some of his food spending is
-university living, some of it is a hobby he cooks for, and a tracker that lets him pick
-one label makes him choose which of those two facts to throw away. He currently resolves
-this with a column in his spreadsheet, which works precisely because a spreadsheet lets
-him invent a second dimension when he needs one.
+Much spending answers two questions at once, and existing tools only ask one. A ₡14,000
+supermarket charge is groceries, because that is what it was. It may also belong to money
+set aside for a particular purpose, such as living away from home, which is a different
+question with a different budget behind it. Some food spending belongs to one purpose and
+some to a hobby, and a tracker that allows one label forces people to throw one of those
+facts away. People who keep a spreadsheet solve this with an extra column, because a
+spreadsheet lets them invent a second dimension when they need one.
 
-The other half of the problem is when he is asked. A month later, looking at a list of
-merchant names, he genuinely cannot remember whether a particular Tuesday's charge was
-the university one or the hobby one, so he guesses, and the guesses accumulate until the
-totals stop meaning anything. The moment he does know is the moment the card is charged —
-he is standing there, he knows exactly what he just bought and why. Daniela has a milder
-version of the same problem and a lower tolerance for it: she makes twenty small payments
-a week and will not file any of them by hand, so whatever she sees at the end of the week
-has to have sorted itself out without her involvement. Keisy sits between them and shows
-where asking goes wrong: she values the question for the purchases she genuinely has to
-think about, and is worn down by being asked about the supermarket, the bus, and the
-streaming charge she has answered identically every time for a year, until she stops
-reading the prompt and starts tapping it away.
+The other half of the problem is when people are asked. A month later, looking at a list
+of merchant names, nobody remembers what a particular Tuesday's charge was for, so they
+guess, and the guesses pile up until the totals mean nothing. The moment someone knows is
+the moment the card is charged. People who make many small payments a week won't file any
+of them by hand, so whatever they see at the end of the week has to have sorted itself
+out. And asking goes wrong when it never stops: a prompt is useful for purchases that need
+a decision, but being asked about the same supermarket, bus fare, and streaming charge
+every time, with the same answer for a year, teaches people to tap it away without
+reading it.
 
 ### ASSUMPTIONS
 
@@ -50,57 +45,61 @@ reading the prompt and starts tapping it away.
 
 ### STORIES
 
-* **02-S01** — **As** Ezequiel, **I want to** be asked which group a charge belongs to at
-  the time it is charged **so that I can** answer while I still remember what I bought
-  * The prompt offers the groups he uses most, and answering takes one tap
+* **02-S01** — **When** I file my spending against budgets and a charge's purpose fades
+  from memory within days, **I want to** be asked which group a charge belongs to at the
+  time it is charged, **so that** I can answer while I still remember what I bought.
+  * The prompt offers the groups the person uses most, and answering takes one tap
   * Dismissing the prompt leaves the transaction unfiled rather than guessing, and it can
     be filed later
   * The prompt can be turned off entirely without affecting anything else in the product
 
-* **02-S02** — **As** Ezequiel, **I want to** give a transaction both a category and a
-  spending group **so that I can** ask what I spent on food and what my university
-  budget cost me without the two answers competing
+* **02-S02** — **When** one charge answers two questions at once, what it was and which
+  budget it belongs to, **I want to** give a transaction both a category and a spending
+  group, **so that** I can ask what I spent on food and what my university budget cost me
+  without the two answers competing.
   * Category and group are recorded independently, and either may be set without the other
   * Both are visible on the transaction and either can be changed afterwards
   * Totals can be produced by category, by group, or by both together
 
-* **02-S03** — **As** Daniela, **I want to** have my transactions sorted into categories
-  without doing it myself **so that I can** see where my week went without filing
-  anything
+* **02-S03** — **When** I make many small payments a week and won't file any of them by
+  hand, **I want to** have my transactions sorted into categories without doing it myself,
+  **so that** I can see where my week went without filing anything.
   * A newly captured transaction receives a category automatically where one can be
     determined with confidence
   * Transactions the product cannot categorize confidently are marked as uncategorized
     rather than assigned a wrong category
   * Automatic categorization never overwrites a category a person set by hand
 
-* **02-S04** — **As** Ezequiel, **I want to** create a rule that files matching
-  transactions automatically **so that I can** stop answering the same question about the
-  same merchant every month
+* **02-S04** — **When** the same merchant appears every month and I always file it the
+  same way, **I want to** create a rule that files matching transactions automatically,
+  **so that** I can stop answering the same question about the same merchant every month.
   * A rule matches on merchant, amount range, account, or a combination
   * A rule can set category, group, or both
   * Rules are listed in the order they apply and can be reordered, edited, and switched off
 
-* **02-S05** — **As** Ezequiel, **I want to** correct a categorization and have that
-  correction remembered **so that I can** fix a mistake once rather than every month
+* **02-S05** — **When** the product has filed a transaction wrongly, **I want to** correct
+  a categorization and have that correction remembered, **so that** I can fix a mistake
+  once rather than every month.
   * Correcting a transaction offers to create or update a rule covering similar ones
-  * He chooses whether the correction applies only to this transaction, to future ones, or
-    also to past ones
+  * The person chooses whether the correction applies only to this transaction, to future
+    ones, or also to past ones
   * Applying a correction to past transactions reports how many were changed
 
-* **02-S06** — **As** Daniela, **I want to** find the transactions that have not been
-  categorized **so that I can** clear them in one sitting instead of hunting for them
+* **02-S06** — **When** some of my transactions have been left without a category,
+  **I want to** find the transactions that have not been categorized, **so that** I can
+  clear them in one sitting instead of hunting for them.
   * Uncategorized transactions are reachable in one step from the main view
   * They can be categorized from that list without opening each one
   * The list shows how many remain
 
-* **02-S07** — **As** Keisy, **I want to** have transactions whose category is already
-  settled filed without being asked **so that I can** be prompted only for the ones I
-  actually need to decide
+* **02-S07** — **When** most prompts ask about charges I have answered the same way many
+  times, **I want to** have transactions whose category is already settled filed without
+  being asked, **so that** I can be prompted only for the ones I actually need to decide.
   * A transaction matched by a rule from 02-S04 is filed silently and raises no prompt
-  * Setting a default from a prompt is offered at the moment she answers it, so settling a
-    category costs nothing extra
-  * She can see which transactions were filed silently, and undo a default that turns out
-    to be wrong
+  * Setting a default from a prompt is offered at the moment the person answers it, so
+    settling a category costs nothing extra
+  * The person can see which transactions were filed silently, and undo a default that
+    turns out to be wrong
 
 ### NON-FUNCTIONAL REQUIREMENTS
 
