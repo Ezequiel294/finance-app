@@ -15,6 +15,7 @@ as `{{PRODUCT_NAME}}`, so a single substitution pass will name it everywhere at 
 | [`vision.md`](vision.md) | What the product is, who it is for, and why they would choose it over a spreadsheet or an existing tracker |
 | [`personas.md`](personas.md) | The five people the product is built for, the requirement each is uniquely responsible for, and the user types deliberately excluded |
 | [`sizing.md`](sizing.md) | The effort metric, the baseline anchor, the estimation dimensions, and the roll-up of every story |
+| [`backlog.md`](backlog.md) | The order in which stories not yet built are taken up, with the reasoning behind the first path through the product |
 | [`one-pagers/`](one-pagers/) | One document per initiative: the situation it addresses, the assumptions behind it, its stories, its non-functional requirements, and its sizing |
 | [`drafts/`](drafts/) | Superseded versions of documents, retained with a note of what changed and why |
 
@@ -38,11 +39,25 @@ as `{{PRODUCT_NAME}}`, so a single substitution pass will name it everywhere at 
 | [`drafts/vision-v2.md`](drafts/vision-v2.md) | `vision.md` — removed a geographic constraint, a timing promise the product cannot keep, and an adjective standing in for a behaviour |
 | [`drafts/personas-v1.md`](drafts/personas-v1.md) | `personas.md` — a fifth persona was added after being tested against the existing four for overlap |
 
+## How Work Flows
+
+The rules for turning a story into working software live in `openspec/specs/process/`.
+Read the relevant capability there before proposing, building, or merging anything.
+
+| Capability | Covers |
+|---|---|
+| `process/vertical-slices` | One change per story, built as ordered vertical slices that are each tested, working, and reviewed before the next begins |
+| `process/backlog-flow` | The ordered backlog, one active story per person, the Definition of Ready and Done, and spikes |
+| `process/branching-and-releases` | Branches from `develop`, pull requests, merge commits, version tags, and releasing to `main` |
+| `process/capability-layout` | Where product specs live, what a capability is, and what belongs in `architecture.md` instead |
+
 ## Implementation Status
 
 Status is **derived**, never hand-maintained. A story is *implemented* when a requirement
-in `openspec/specs/` cites its identifier, *in progress* when only a requirement in an
-active change under `openspec/changes/` cites it, and *not started* when nothing cites it.
+in a product capability spec under `openspec/specs/` cites its identifier, *in progress*
+when only a requirement in an active change under `openspec/changes/` cites it, and *not
+started* when nothing cites it. Product capability specs are every spec outside
+`documentation/` and `process/`.
 If this table and the specs disagree, the specs are correct and this table is stale.
 
 Refresh it whenever a change is archived.
