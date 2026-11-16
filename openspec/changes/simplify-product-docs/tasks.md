@@ -44,7 +44,7 @@ Do the same steps in each epic:
 
 - [x] 3.1 `01-accounts-and-transaction-ingestion.md`, including the split note on `01-S01`
 - [x] 3.2 `02-categorization-and-rules.md`
-- [ ] 3.3 `03-budgets-and-limits.md`, including:
+- [x] 3.3 `03-budgets-and-limits.md`, including:
   - the split note on `03-S05`;
   - the nested-budgets assumption, which is now settled by asking people who budget over several periods at once.
 - [ ] 3.4 `04-dashboard-and-insights.md`, including the single-summary-view assumption, which now compares someone who wants one fact with someone who wants to compare and drill in
