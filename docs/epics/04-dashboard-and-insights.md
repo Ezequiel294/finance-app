@@ -2,23 +2,22 @@
 
 ### PROBLEM
 
-Daniela can list what she spent yesterday and has no idea what she spent last month. The
-information exists — it is in her banking app, one screen at a time, in the order it
-happened, with no sense of which of those forty lines mattered — but reading a
-chronological list has never once told her that she is spending a third of her money on
-eating out. She does not want to study her finances; she wants to glance at something and
-come away with one fact she did not have before. Ezequiel's version is sharper: he
-already knows his totals because he computed them, and what his spreadsheet cannot easily
-show him is whether this month is unusual. A number by itself is not information. A
-number next to the three months before it is.
+Many people can list what they spent yesterday and have no idea what they spent last
+month. The information exists in their banking app, one screen at a time, in the order it
+happened, with no sense of which of forty lines mattered. Reading a list in date order
+never tells them that a third of their money goes on eating out. They don't want to study
+their finances. They want to glance at something and come away with one fact they didn't
+have before. People who already track their totals by hand have a sharper version: they
+know their totals, and what their spreadsheet can't easily show is whether this month is
+unusual. A number by itself is not information. A number next to the three months before
+it is.
 
-The way this normally fails is that a product answers with decoration: a colourful chart
-that is pleasant to look at and answers no question anyone was actually asking, and which
-cannot be interrogated when it shows something surprising. When Ezequiel sees a category
-that looks too high, the only useful next move is to see the transactions that produced
-it, immediately, without navigating somewhere else and reconstructing the filter by hand.
-Patricia needs one thing neither of them does: the household total broken down by which
-of the two of them spent it, because that is the actual subject of the recurring argument
+Products usually fail here by answering with decoration: a colourful chart that is
+pleasant to look at, answers no question anyone asked, and can't be questioned when it
+shows something surprising. When a category looks too high, the only useful next step is
+to see the transactions behind it, at once, without going somewhere else and rebuilding
+the filter by hand. People who share household costs need one more thing: the household
+total broken down by who spent it, because that is what the recurring argument is about,
 and no chart of categories will settle it.
 
 ### ASSUMPTIONS
@@ -35,48 +34,54 @@ and no chart of categories will settle it.
   is designed to be legible at phone width before it is designed for a larger screen.
 - **Assumed.** Uncategorized transactions distort any breakdown, so they are shown as
   their own visible share rather than omitted or silently folded into another category.
-- **Unverified.** That a single summary view can serve both Daniela, who wants one fact,
-  and Ezequiel, who wants to compare and drill in. Settled by putting the same view in
+- **Unverified.** That a single summary view can serve both someone who wants one fact
+  and someone who wants to compare and drill in. Settled by putting the same view in
   front of both kinds of user; if it cannot, the view splits rather than accumulating
   controls.
 
 ### STORIES
 
-* **04-S01** — **As** Daniela, **I want to** see where last month's money went **so that I
-  can** learn something about my spending without having recorded any of it
+* **04-S01** — **When** my spending is only visible as a long list in date order, **I want
+  to** see where last month's money went, **so that** I can learn something about my
+  spending without having recorded any of it.
   * Answers the question: *which categories took the largest share of what I spent?*
   * Categories are ordered by share, with the uncategorized share shown alongside them
   * The view is readable without interaction — no control has to be operated to get the
     answer
 
-* **04-S02** — **As** Ezequiel, **I want to** compare a period against the ones before it
-  **so that I can** tell whether this month is unusual or normal for me
+* **04-S02** — **When** I already know my totals but can't tell whether they are normal,
+  **I want to** compare a period against the ones before it, **so that** I can tell
+  whether this month is unusual or normal for me.
   * Answers the question: *is this period higher or lower than my recent periods, and by
     how much?*
   * Shows at least three prior periods where the data exists, and says so when it does not
   * The comparison is stated as a difference, not left for the reader to compute
 
-* **04-S03** — **As** Ezequiel, **I want to** see spending broken down by group as well as
-  by category **so that I can** find out what my university living actually costs me
+* **04-S03** — **When** I file spending against budgets as well as categories, **I want
+  to** see spending broken down by group as well as by category, **so that** I can find
+  out what my university living actually costs me.
   * Answers the question: *how much did each of my budgets consume this period?*
   * Group and category breakdowns are reachable from the same view without renavigating
   * A group's total can be read alongside its limit where one is set
 
-* **04-S04** — **As** Daniela, **I want to** open a part of a chart and see the
-  transactions behind it **so that I can** find out what made a number look wrong
+* **04-S04** — **When** a figure on a chart looks wrong to me, **I want to** open a part of
+  a chart and see the transactions behind it, **so that** I can find out what made a
+  number look wrong.
   * Answers the question: *what exactly produced this figure?*
   * Selecting any segment, bar, or row lists the transactions composing it
   * The resulting list carries the same period and filters, with no re-selection required
 
-* **04-S05** — **As** Patricia, **I want to** see our household spending split by who
-  spent it **so that I can** settle what each of us contributed without reconstructing it
-  from two sets of statements
+* **04-S05** — **When** I share household costs with someone and we disagree about who
+  paid for what, **I want to** see our household spending split by who spent it, **so
+  that** I can settle what each of us contributed without reconstructing it from two sets
+  of statements.
   * Answers the question: *of what we spent together, how much did each of us pay for?*
   * Covers only transactions attributed to the shared budget
   * Each person's share is shown as both an amount and a proportion
 
-* **04-S06** — **As** Andrés, **I want to** see my income alongside my spending over time
-  **so that I can** see how lumpy months actually compare against what I spent in them
+* **04-S06** — **When** my income arrives in irregular lumps, **I want to** see my income
+  alongside my spending over time, **so that** I can see how lumpy months actually compare
+  against what I spent in them.
   * Answers the question: *when did money arrive, and how did spending track it?*
   * Incoming and outgoing amounts are distinguishable at a glance
   * Periods with no income are visible as such rather than rendered as gaps
