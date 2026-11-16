@@ -1,22 +1,8 @@
 ## Purpose
 
-Defines how a product vision statement is written, retained across drafts, and used as the reference against which every proposed product feature is checked.
+Defines how the product vision, its principles, and its non-goals are written, and how every epic and story is checked against them.
 
 ## Requirements
-
-### Requirement: Vision Template Structure
-
-The product vision SHALL be expressed using Moore's template and MUST contain all six clauses in order: **FOR** (target customer), **WHO** (statement of the need or opportunity), **THE** `<product name>` **is a** `<product category>`, **THAT** (key benefit, compelling reason to buy), **UNLIKE** (primary competitive alternative), **OUR PRODUCT** (statement of primary differentiation).
-
-#### Scenario: A clause is missing
-
-- **WHEN** a vision statement omits any of the six clauses
-- **THEN** it is incomplete and MUST be revised before personas are derived from it
-
-#### Scenario: The UNLIKE clause names no real alternative
-
-- **WHEN** the UNLIKE clause describes a generic category rather than an identifiable competing product or the user's current way of working
-- **THEN** it MUST be rewritten to name the actual alternative the product displaces
 
 ### Requirement: Vision Answers Three Questions
 
@@ -29,36 +15,34 @@ The vision SHALL answer, without requiring any other document: what the product 
 
 ### Requirement: Vision Length And Tone
 
-The vision SHALL be a succinct statement, not a specification. It MUST NOT enumerate features, screens, data models, or implementation technologies.
+The vision SHALL be a short statement, not a specification. It MUST NOT list features, screens, data models, or technologies. Principles are rules for the whole product, not features.
 
 #### Scenario: Vision drifts into a feature list
 
-- **WHEN** a vision statement enumerates specific product features or technical components
-- **THEN** those details MUST be removed from the vision and carried instead into the 1-pagers that cover them
-
-### Requirement: Draft Retention
-
-`docs/vision.md` SHALL always hold the current vision, and every superseded version SHALL be retained under `docs/drafts/` as required by the documentation layout. Each retained version MUST carry a note of what changed and why.
-
-#### Scenario: A draft records no reason for the change
-
-- **WHEN** a retained draft is stored without a note of what changed and why
-- **THEN** that note MUST be added, because a later reader needs to know why the product's direction changed, not merely that it did
+- **WHEN** the vision statement or a principle lists specific features or technical parts
+- **THEN** those details MUST be removed from the vision and moved into the epics that cover them
 
 ### Requirement: Vision Governs Feature Inclusion
 
-Every feature proposed in a 1-pager SHALL be checkable against the vision. A feature that the vision does not support MUST either be rejected or trigger an explicit, drafted revision of the vision.
+Every epic and story SHALL be checked against the vision, including its principles and non-goals. If the vision doesn't support a story, the story MUST be dropped, or the vision MUST be deliberately changed first.
 
 #### Scenario: A proposed feature falls outside the vision
 
-- **WHEN** a functional requirement is proposed that the current vision does not support
-- **THEN** either the requirement is dropped, or the vision is revised through the draft-retention process and the change is recorded
+- **WHEN** someone proposes a story the current vision doesn't support
+- **THEN** either the story is dropped, or the vision is changed first, in its own commit whose message says what changed and why
 
-### Requirement: Placeholder Name In Vision
+### Requirement: Vision States Principles And Non-Goals
 
-While the product name is undecided, the **THE** clause SHALL use the `{{PRODUCT_NAME}}` placeholder. The product category in that clause MUST still be stated concretely.
+`docs/vision.md` SHALL contain two sections:
+- **Principles**: rules every epic and story must follow across the whole product. Each principle is a claim someone can check.
+- **Non-goals**: the user types and features the product deliberately leaves out, each with its reason.
 
-#### Scenario: Vision is written before the name is chosen
+#### Scenario: A story conflicts with a principle
 
-- **WHEN** the vision is authored with no product name selected
-- **THEN** it MUST read "THE {{PRODUCT_NAME}} is a `<concrete category>`", leaving the category filled in and only the name deferred
+- **WHEN** a story would make the product unusable without a linked account, useless until someone sets it up, or break any other principle
+- **THEN** the story MUST be changed to follow the principle, or the principle MUST be deliberately changed first
+
+#### Scenario: A proposed capability matches a non-goal
+
+- **WHEN** an idea serves a user type or feature listed as a non-goal
+- **THEN** it MUST be rejected, unless someone first deliberately removes that non-goal and records why

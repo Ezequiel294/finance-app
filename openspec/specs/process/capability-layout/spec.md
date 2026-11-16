@@ -5,20 +5,6 @@ Defines where product capability specs live and what a capability is, so that th
 
 ## Requirements
 
-### Requirement: Product Specs Are Organized By Epic And Capability
-
-Each product capability spec SHALL live at `openspec/specs/<epic-slug>/<capability>/spec.md`, where `<epic-slug>` is the file name of the 1-pager whose story introduced the capability, without its ordinal prefix or extension, and `<capability>` is a kebab-case name for an area of behavior.
-
-#### Scenario: A product spec is created outside an epic folder
-
-- **WHEN** a product capability spec is created directly under `openspec/specs/` or under a folder that is not an epic slug
-- **THEN** it MUST be moved under the epic slug of the 1-pager that introduced it
-
-#### Scenario: 1-pager ordinals are renumbered
-
-- **WHEN** 1-pagers are renumbered under the documentation rules
-- **THEN** no product spec path changes, because the epic slug excludes the ordinal
-
 ### Requirement: A Capability Describes Behavior, Not A Story
 
 A capability SHALL describe one area of the product's behavior as it currently stands. Several stories MAY add to or modify the same capability. Each requirement in a product capability spec SHALL cite every story it realizes on a line of the form `Realizes: <NN>-S<NN>`, listing several identifiers separated by commas where more than one story shaped it.
@@ -55,3 +41,19 @@ Product capability specs SHALL describe observable behavior only. The structure 
 
 - **WHEN** a product capability spec names a framework, library, module, or table
 - **THEN** that detail MUST be moved to `docs/architecture.md` or the change's `design.md`, leaving only the observable behavior in the spec
+
+### Requirement: Product Specs Are Organized By Epic Slug And Capability
+
+Each product spec SHALL live at `openspec/specs/<epic-slug>/<capability>/spec.md`.
+- `<epic-slug>` is the file name of the epic in `docs/epics/` whose story created the capability, without its number or file extension. For example, `01-accounts-and-transaction-ingestion.md` gives `accounts-and-transaction-ingestion`.
+- `<capability>` is a kebab-case name for one area of behavior.
+
+#### Scenario: A product spec is created outside an epic folder
+
+- **WHEN** a product spec is created directly under `openspec/specs/`, or under a folder that isn't an epic slug
+- **THEN** it MUST be moved under the slug of the epic that created it
+
+#### Scenario: Epic ordinals are renumbered
+
+- **WHEN** epics are renumbered under the documentation rules
+- **THEN** no product spec moves, because the epic slug doesn't include the number

@@ -1,45 +1,47 @@
 ## Purpose
 
-Defines where the product's documentation lives, how its files and directories are named, how the document index is maintained, and how a reader determines which documented requirements are already built.
+Defines where the product's documentation lives, how it is named and indexed, and how references between documents stay valid.
 
 ## Requirements
 
 ### Requirement: Separation Of Rules From Content
 
-Specification files under `openspec/specs/` SHALL define how documents are written, read, and updated. They MUST NOT contain document content. All document content SHALL live under `docs/`.
+Files under `openspec/specs/` SHALL say how documents are written, read, and updated. They MUST NOT contain the documents themselves. All document content SHALL live under `docs/`.
 
 #### Scenario: Document content written into a spec file
 
-- **WHEN** an actual vision statement, persona, or 1-pager body is written into a file under `openspec/specs/`
-- **THEN** it MUST be moved to the corresponding file under `docs/`, leaving only the authoring rules in the spec
+- **WHEN** an actual vision statement, epic, or story is written into a file under `openspec/specs/`
+- **THEN** it MUST be moved to the matching file under `docs/`, so the spec keeps only the rules
 
 #### Scenario: Document content written outside docs/
 
-- **WHEN** a product document is created at the repository root or in an ad-hoc directory
-- **THEN** it MUST be relocated under `docs/` before the work that created it is considered complete
+- **WHEN** a product document is created at the repository root or in some other folder
+- **THEN** it MUST be moved under `docs/` before the work that created it counts as finished
 
 ### Requirement: Document Set Layout
 
-The product's documentation SHALL occupy `docs/` with this layout: `README.md` (the index), `vision.md`, `personas.md`, `sizing.md`, `backlog.md` (the ordered product backlog), a `one-pagers/` directory, and a `drafts/` directory holding superseded versions. From the first product change onward it SHALL also contain `architecture.md`, describing the structure of the implementation.
+The product's documentation SHALL live in `docs/`, with this layout:
+- `README.md`: the index;
+- `vision.md`;
+- `backlog.md`: the stories to take up next, in order;
+- `epics/`: one file per epic.
+
+From the first product change on, `docs/` SHALL also contain `architecture.md`, which describes how the code is structured. Older versions of a document are kept by git history, not as copies in `docs/`.
 
 #### Scenario: A document is placed outside the defined layout
 
-- **WHEN** a document of one of these types is created at a path the layout does not define
-- **THEN** it MUST be moved to its defined path, so every reader finds each document type where it is expected
+- **WHEN** one of these documents is created at a path the layout doesn't define
+- **THEN** it MUST be moved to its defined path, so readers always find each document where they expect it
+
+#### Scenario: A superseded version is saved as a copy
+
+- **WHEN** an older version of a document is saved as a separate file under `docs/`
+- **THEN** the copy MUST be removed, and the reason for the change MUST go in the commit message instead
 
 #### Scenario: The first product change is archived without an architecture document
 
-- **WHEN** the first change that adds a product capability spec is archived and `docs/architecture.md` does not exist
-- **THEN** the change is incomplete, and `docs/architecture.md` MUST be written before it is merged
-
-### Requirement: One-Pager File Naming
-
-Each 1-pager SHALL be one file at `docs/one-pagers/<NN>-<epic-slug>.md`, where `<NN>` is a zero-padded two-digit ordinal establishing reading order and `<epic-slug>` is kebab-case.
-
-#### Scenario: Two 1-pagers claim the same ordinal
-
-- **WHEN** a new 1-pager is added with an ordinal already in use
-- **THEN** the ordinals MUST be renumbered so every 1-pager in the directory has a unique ordinal
+- **WHEN** the first change that adds a product spec is archived and `docs/architecture.md` doesn't exist
+- **THEN** the change is not finished, and `docs/architecture.md` MUST be written before it is merged
 
 ### Requirement: Documentation Index
 
@@ -49,20 +51,6 @@ Each 1-pager SHALL be one file at `docs/one-pagers/<NN>-<epic-slug>.md`, where `
 
 - **WHEN** any file under `docs/` is created, renamed, or removed
 - **THEN** `docs/README.md` MUST be updated in the same change, so the index never references a missing file and never omits an existing one
-
-### Requirement: Implementation Status Index
-
-`docs/README.md` SHALL carry a status table listing every 1-pager with the count of its stories that are not started, in progress, and implemented. The table MUST be derived from the state of `openspec/specs/` and `openspec/changes/` rather than maintained as an independent record.
-
-#### Scenario: The status table disagrees with the specs
-
-- **WHEN** the status table reports a story as implemented but no requirement in `openspec/specs/` cites that story
-- **THEN** the specs are authoritative and the table MUST be corrected to match them
-
-#### Scenario: A change is archived
-
-- **WHEN** a change is archived and its requirements are folded into `openspec/specs/`
-- **THEN** the status table MUST be refreshed so the stories that change realized are reported as implemented
 
 ### Requirement: Undecided Product Name Placeholder
 
@@ -78,27 +66,11 @@ Until the product name is chosen, documents SHALL refer to the product using the
 - **WHEN** a document introduces a working product name instead of the placeholder
 - **THEN** it MUST be replaced with `{{PRODUCT_NAME}}`, so a single later substitution remains sufficient
 
-### Requirement: Cross-Document Reference Integrity
+### Requirement: References Resolve
 
-Any persona referenced in a 1-pager SHALL be defined in `personas.md`, and any document referenced from the index SHALL exist.
+Every story ID mentioned in a document, a spec, or a change SHALL exist in an epic. Every document listed in the index SHALL exist.
 
-#### Scenario: A 1-pager names an undefined persona
+#### Scenario: A reference names a story that does not exist
 
-- **WHEN** a functional requirement names a persona that does not appear in `personas.md`
-- **THEN** either the persona MUST be added under the persona rules, or the requirement MUST be reassigned to an existing persona
-
-### Requirement: Superseded Versions Are Retained On Composition Change
-
-A document version replaced by a **composition change** SHALL be retained under `docs/drafts/` as `<document>-v<N>.md`, numbered sequentially, and MUST NOT be deleted or overwritten. A composition change is one that alters what the document asserts or which items it contains: rewording the vision statement, adding or removing a persona, rewriting a problem statement, or withdrawing or replacing a story.
-
-Additive and corrective edits SHALL NOT produce a retained version. Appending a story, adding an assumption, tightening a non-functional requirement, correcting a factual detail, and fixing wording or typography are ordinary edits, and git history is the record for them.
-
-#### Scenario: A document's composition changes
-
-- **WHEN** a persona is added or removed, the vision statement is reworded, a problem statement is rewritten, or a story is withdrawn or replaced
-- **THEN** the prior version MUST first be written to the next unused `drafts/<document>-v<N>.md`, with a note of what changed and why, before the current file is updated
-
-#### Scenario: A document is edited additively or corrected
-
-- **WHEN** a story is appended, an assumption is added, a threshold is tightened, or a factual detail is corrected
-- **THEN** no version is retained, because retaining one for every such edit buries the composition changes that are worth reading among edits that are not
+- **WHEN** a document, spec, or change mentions a story ID that no epic contains
+- **THEN** the mention MUST be fixed, or the story MUST be added to the right epic

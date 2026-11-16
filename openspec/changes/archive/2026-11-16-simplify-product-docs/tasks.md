@@ -118,13 +118,13 @@ Do the same steps in each epic:
 
 ## 6. Done
 
-- [ ] 6.1 Search every tracked file outside `openspec/` with `git grep -nE 'Ezequiel|Daniela|Patricia|Andrés|Keisy|[Pp]ersonas?([^a-z]|$)|1-pager|one-pagers/|sizing\.md|drafts/|story points?|status table' -- ':!openspec'`. Verify that it finds nothing.
-- [ ] 6.2 Run `openspec validate simplify-product-docs --strict`. Verify that it passes.
-- [ ] 6.3 Run `openspec archive simplify-product-docs --yes`. Verify two things: `openspec/specs/documentation/` holds only `doc-structure`, `product-vision`, and `epics`; and `openspec validate --all --strict` passes.
-- [ ] 6.4 Update the Purpose section of two specs by hand, because a delta can't change it:
+- [x] 6.1 Search every tracked file outside `openspec/` with `git grep -nE 'Ezequiel|Daniela|Patricia|Andrés|Keisy|[Pp]ersonas?([^a-z]|$)|1-pager|one-pagers/|sizing\.md|drafts/|story points?|status table' -- ':!openspec'`. Verify that it finds nothing.
+- [x] 6.2 Run `openspec validate simplify-product-docs --strict`. Verify that it passes.
+- [x] 6.3 Run `openspec archive simplify-product-docs --yes`. Verify two things: `openspec/specs/documentation/` holds only `doc-structure`, `product-vision`, and `epics`; and `openspec validate --all --strict` passes.
+- [x] 6.4 Update the Purpose section of two specs by hand, because a delta can't change it:
   - `openspec/specs/documentation/doc-structure/spec.md`: where the documentation lives, how it is named and indexed, and how references stay valid;
   - `openspec/specs/documentation/product-vision/spec.md`: how the vision, its principles, and its non-goals are written, and how every epic and story is checked against them.
 
   Verify that `openspec validate --all --strict` still passes.
-- [ ] 6.5 Search the specs with `grep -rnE 'Ezequiel|Daniela|Patricia|Andrés|Keisy|[Pp]ersonas?([^a-z]|$)|1-pager|one-pagers/|sizing\.md|drafts/|story points?' openspec/specs`, and run the two status queries from `design.md`. Verify that the search finds nothing and that both queries return nothing, since no story is built yet.
-- [ ] 6.6 Stop for review. After it is accepted, commit the archive on its own.
+- [x] 6.5 Search the specs with `grep -rnE 'Ezequiel|Daniela|Patricia|Andrés|Keisy|[Pp]ersonas?([^a-z]|$)|1-pager|one-pagers/|sizing\.md|drafts/|story points?' openspec/specs`, and run the two status queries from `design.md`. Verify that the search finds nothing and that both queries return nothing, since no story is built yet.
+- [x] 6.6 Stop for review. After it is accepted, commit the archive on its own.
