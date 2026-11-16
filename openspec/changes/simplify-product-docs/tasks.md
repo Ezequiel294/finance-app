@@ -18,7 +18,7 @@
 
   Verify that `grep -n drafts docs/vision.md` finds nothing.
 - [x] 1.4 Delete `docs/personas.md` and the `docs/drafts/` folder. Verify that `ls docs` shows neither.
-- [ ] 1.5 Stop for review. After it is accepted, commit this group on its own.
+- [x] 1.5 Stop for review. After it is accepted, commit this group on its own.
 
 ## 2. Rename 1-pagers to epics (file moves and headings only, no rewording)
 
@@ -30,7 +30,7 @@
 
   Verify that each file's `###` headings are exactly PROBLEM, ASSUMPTIONS, STORIES, NON-FUNCTIONAL REQUIREMENTS, in that order.
 - [x] 2.3 Before rewording anything, save the list of story IDs in each epic to the scratchpad. Task 3.8 compares against this list. Verify that it holds 52 IDs.
-- [ ] 2.4 Stop for review. After it is accepted, commit this group on its own.
+- [x] 2.4 Stop for review. After it is accepted, commit this group on its own.
 
 ## 3. Rewrite each epic as situations and job stories
 
@@ -51,25 +51,25 @@ Do the same steps in each epic:
 - [x] 3.5 `05-multi-currency-and-fx.md`
 - [x] 3.6 `06-security-and-data-control.md`
 - [x] 3.7 `07-investments-and-net-worth.md`
-- [ ] 3.8 Compare the story IDs in `docs/epics/` with the list saved in 2.3. Verify that all 52 are still there, none is renumbered, and both split stories still say "Replaced by".
+- [x] 3.8 Compare the story IDs in `docs/epics/` with the list saved in 2.3. Verify that all 52 are still there, none is renumbered, and both split stories still say "Replaced by".
 
 ## 4. Backlog, sizing, and index
 
-- [ ] 4.1 Delete `docs/sizing.md`. Verify that it is gone.
-- [ ] 4.2 Rewrite `docs/backlog.md`.
+- [x] 4.1 Delete `docs/sizing.md`. Verify that it is gone.
+- [x] 4.2 Rewrite `docs/backlog.md`.
   - The intro says three things: the backlog holds only what comes next; a story's detail bullets are written when it is added; and a story leaves when its change is archived.
   - The table keeps the same six stories in the same order, with the columns `#`, `Story`, `I want to`, and `Why here`.
   - Remove the persona column, the "baseline anchor" wording for `01-S03`, and the whole "Not Yet Ordered" section.
 
   Verify that every ID listed exists in an epic.
-- [ ] 4.3 Rewrite `docs/README.md`.
+- [x] 4.3 Rewrite `docs/README.md`.
   - The index lists `vision.md`, `backlog.md`, and `epics/`, with a table of the seven epics.
   - Remove the entries for personas, sizing, and drafts.
   - Replace the status table with an "Implementation Status" section. It shows the two `grep` queries from `design.md` and points to `openspec list` for active work.
   - Add one line to "How Work Flows" saying that `documentation/epics` decides where new work goes.
 
   Verify that every file under `docs/` is in the index and that every link works.
-- [ ] 4.4 Stop for review. After it is accepted, commit this group on its own.
+- [x] 4.4 Stop for review. After it is accepted, commit this group on its own.
 
 ## 5. Configuration, writing rules, and pull request template
 
