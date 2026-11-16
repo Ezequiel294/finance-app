@@ -1,0 +1,144 @@
+# Accounts and Transaction Ingestion
+
+### PROBLEM
+
+People who hold money at several banks, and spend from an account they top up by hand,
+often find that none of their banks will give a personal application a list of what they
+spent. So every few weeks they type their transactions into a spreadsheet by hand, and
+their records are right for about a week after each update and wrong for the weeks after.
+Consumer trackers that promise to do this capture some transactions and miss others, with
+no way to tell which, so people stop trusting them and go back to typing. Other people
+can download their statements every month but refuse to give any application their
+banking password to get them faster.
+
+What is missing is one place where transactions arrive by whatever route each account
+allows. A product that only works through a bank connection is useless when the bank
+offers none or the person refuses to link one. A product that only takes hand-typed
+entries is the spreadsheet again with a worse editor. Transactions need to arrive through
+a connection where one exists, a downloaded statement where it does not, and a few
+seconds of typing for the cash payment no bank records, with the product keeping them
+straight when the same purchase arrives twice by two routes.
+
+### ASSUMPTIONS
+
+- **Verified (2026-09-20).** BAC Credomatic operates a developer portal at
+  `developers.baccredomatic.com` with self-serve application registration, API keys, and
+  rate-limited plans. Its published API offering is framed as corporate treasury
+  integration for companies (`baccredomatic.com/empresas/api-tesoreria-corporativa-digital`),
+  reached by consultation request and technical evaluation, and described as serving
+  organisations with IT teams. The product catalogue does not render without signing in,
+  though its filter categories include *Accounts* and *Statements*.
+- **Unverified.** Whether any institution offers a consent flow that lets a third-party
+  application read an *individual's* personal accounts on their behalf, as opposed to a
+  company reading its own. Settled by registering on the portal, reading the catalogue
+  and terms behind the login, and recording the answer. Until then no story here depends
+  on a bank connection existing.
+- **Verified (2026-09-20).** Aggregator coverage does not currently reach Costa Rican
+  institutions. Belvo publishes coverage for Mexico, Brazil, and Colombia; Plaid's
+  coverage is US, Canada, UK, and EU; the Open Banking Tracker directory lists Costa Rican
+  banks with no confirmed developer-portal data.
+- **Unverified.** That transaction alert emails or messages, forwarded by the account
+  holder to an address the product controls, can be parsed reliably enough to create
+  transactions. Settled by collecting a month of real alerts from one institution and
+  measuring how many parse correctly.
+- **Assumed.** Statement exports are available to the account holder in a delimited or
+  structured file format, and their column layout is stable within one institution but
+  differs between institutions.
+- **Assumed.** The same purchase can legitimately reach the product twice — once from a
+  connection or alert and once from a statement covering the same period — so duplicate
+  detection is a normal condition rather than an error.
+
+### STORIES
+
+* **01-S01** — **When** my money is spread across several banks and I keep my records by
+  typing in what they show me, **I want to** connect an account at my bank, **so that** I
+  can have transactions appear without typing them in myself.
+  * The product states plainly which institutions can be connected and which cannot,
+    rather than failing at the end of the attempt
+  * A connection that cannot be offered for an institution says so before any credential
+    or consent is requested
+  * An account whose connection later stops working is shown as stale, with the date of
+    the last transaction received
+
+  > **Split.** Replaced by **01-S07**, **01-S08**, and **01-S09** below. Kept here because
+  > it states the need those stories exist to serve.
+
+* **01-S02** — **When** my bank lets me download statements but I won't give an
+  application my banking password, **I want to** import a statement file I downloaded
+  from my bank, **so that** I can use the product without giving it access to my account.
+  * The importer accepts a delimited file and lets the person map its columns to amount,
+    date, description, and currency the first time they use a given layout
+  * A saved mapping is reused automatically on the next import from the same institution
+  * Rows that cannot be read are reported individually with the reason, and the rest of
+    the file still imports
+
+* **01-S03** — **When** I have just paid in cash and no bank will ever show the payment,
+  **I want to** add a transaction by hand in a few seconds, **so that** I can record a
+  cash payment before I forget it.
+  * Amount and date are the only entries required; everything else may be left for later
+  * The date defaults to today and the currency to the account's own currency
+  * The entry can be completed without leaving the screen the person started from
+
+* **01-S04** — **When** the same account's transactions reach the product by more than
+  one route, **I want to** be shown transactions that look like duplicates of each other,
+  **so that** I can keep one record per purchase when the same charge arrives by two
+  routes.
+  * Candidates are proposed on matching amount, currency, and a date within a short window
+  * Nothing is merged without the person confirming it
+  * A pair the person declines to merge is not proposed again
+
+* **01-S05** — **When** I am paid by clients whenever their invoices clear, **I want to**
+  record a payment that has arrived from a client, **so that** I can have money coming in
+  counted as well as money going out.
+  * Incoming amounts are recorded against an account and are distinguishable from spending
+  * A payment can be recorded in the currency it arrived in
+  * The date recorded is the date the money became available, which may differ from the
+    invoice date
+
+* **01-S06** — **When** my money sits in accounts at several institutions, **I want to**
+  see every account I hold and its current balance in one list, **so that** I can know
+  where my money is without opening three banking applications.
+  * Each account shows its balance in its own currency
+  * Accounts from different institutions appear in one list
+  * The list shows when each account's information was last updated
+
+* **01-S07** — **When** I am working out how to get each institution's transactions into
+  the product, **I want to** see which of my institutions can be connected and which
+  cannot, **so that** I can find out where I stand before attempting anything.
+  * Each institution is listed as connectable, import-only, or manual-only
+  * The listing states what a connection would provide where one exists
+  * An institution with no connection available says so plainly rather than failing later
+
+* **01-S08** — **When** one of my institutions supports a connection, **I want to**
+  authorise a connection to an institution that supports one, **so that** I can have its
+  transactions arrive without my typing them.
+  * Authorisation happens through the institution, and the product never sees a password
+  * Access granted is revocable from within the product at any time
+  * A failed or declined authorisation leaves the account fully usable by import and by
+    manual entry
+
+* **01-S09** — **When** I rely on a connection to bring in an account's transactions,
+  **I want to** be told when a connection has stopped working, **so that** I can notice
+  before I rely on figures that quietly stopped updating.
+  * A stale connection is marked with the date of the last transaction received
+  * Totals derived from a stale account state their age
+  * Re-authorising is reachable from the notice itself
+
+### NON-FUNCTIONAL REQUIREMENTS
+
+- **Credential handling.** The product never stores a bank password. Where a connection
+  exists it holds a revocable token issued by the institution; any such token is held
+  server-side and never written into the application bundle or device storage.
+- **Transport.** All traffic between the application and any service uses TLS 1.3 or
+  later. Connections presenting an invalid certificate are refused rather than warned on.
+- **Import performance.** A statement file of up to 5,000 rows completes import, including
+  duplicate detection, within 10 seconds on a current mid-range phone.
+- **Manual entry latency.** Saving a hand-entered transaction returns control to the user
+  within 300 ms, and does not wait on any network call to succeed.
+- **Offline behaviour.** Manual entry and viewing of already-captured transactions work
+  with no network connection; entries made offline synchronise when connectivity returns.
+- **Freshness.** Where a connection exists, transactions are no more than 12 hours behind
+  the institution, and the interface states the time of the last successful update rather
+  than implying it is live.
+- **Import durability.** A failed or interrupted import leaves no partial set of
+  transactions; either the readable rows are all committed or none are.

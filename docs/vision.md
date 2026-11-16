@@ -44,10 +44,36 @@ handle them at all, and they show an investment's market value without acknowled
 fees standing between that number and money in your pocket. {{PRODUCT_NAME}} is built
 around those details rather than in spite of them.
 
+## Principles
+
+Every epic and story must follow these. Each one can be checked.
+
+- **Fully usable without linking any account.** Everything the product does must also
+  work for someone who never links a bank.
+- **Useful with one account, one currency, and no setup.** Someone with a single account
+  in a single currency must get value without configuring anything first.
+
+## Non-goals
+
+The product deliberately leaves these out.
+
+- **Financial advice or recommendations.** {{PRODUCT_NAME}} describes what a person's
+  money has done and what it is worth now. It does not recommend, rank, or project.
+  Serving advisors would pull it toward giving advice.
+- **Tax and accounting.** Tax rules depend on the country, change every year, and matter
+  to few users. The product has no way to keep them correct. People who need this can
+  export their transactions and work elsewhere.
+- **Businesses and organisations.** Company finances bring several approvers, payroll,
+  receivables, and audits. No individual needs these, and supporting them would reshape
+  every feature.
+- **Running anything on a bank's or institution's side.** The product uses whatever an
+  institution exposes. It never administers anything for the institution, so no bank
+  staff configure, operate, or support it.
+
 ## Using This Vision
 
-Every initiative proposed for {{PRODUCT_NAME}} is checked against this statement. A
-proposed capability that this vision does not support is either dropped, or the vision is
-revised deliberately — with the superseded version retained under `drafts/` and a note
-recording what changed and why. The vision is what keeps the product from accumulating
-capabilities that no longer serve the people it was built for.
+Every epic and story for {{PRODUCT_NAME}} is checked against this vision, including its
+principles and non-goals. If the vision doesn't support an idea, the idea is dropped, or
+the vision is changed first on purpose. A vision change goes in its own commit, and the
+commit message says what changed and why. The vision keeps the product from collecting
+features that no longer serve the people it was built for.
