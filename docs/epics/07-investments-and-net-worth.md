@@ -2,28 +2,26 @@
 
 ### PROBLEM
 
-Ezequiel puts a fixed amount into an index fund most months and holds a small amount of
-bitcoin, and he tracks both in a spreadsheet because the number he cares about is not one
-his broker shows him. His broker charges 1.55% to move money in, a flat fifteen cents to
-buy the index fund, and a percentage rather than a flat fee on bitcoin, and getting money
-back out to his bank costs a fixed international transfer charge on top. So the figure
-displayed in his broker's application — units multiplied by today's price — is not what he
-would receive if he sold, and it never was. His spreadsheet computes the real number by
-grossing up each deposit to recover the fee, subtracting the trade cost, and holding the
-withdrawal charge separately, which is the arithmetic nobody offers him and the reason he
-is still maintaining formulas by hand.
+People who put a fixed amount into an index fund most months, or hold a little bitcoin,
+often track both in a spreadsheet because the number they care about isn't one their
+broker shows. A broker may charge 1.55% to move money in, a flat fifteen cents to buy an
+index fund, and a percentage rather than a flat fee on bitcoin, with a fixed
+international transfer charge on top to bring money back to the bank. So the figure in
+the broker's application, units times today's price, is not what they would receive if
+they sold, and it never was. Their spreadsheet computes the real number by grossing up
+each deposit to recover the fee, subtracting the trade cost, and holding the withdrawal
+charge separately. Nobody else offers this arithmetic, which is why they still maintain
+formulas by hand.
 
-The part that actually costs him time is not the arithmetic, though; it is that the prices
-go stale. His sheet fetches live quotes through a spreadsheet function that has been
-degrading into cached fallback values, so the totals he looks at are anchored to whatever
-the last successful fetch returned, and he cannot tell by looking whether a figure is from
-today or from three weeks ago. What he wants is modest and specific. He is entirely
-willing to type in what he holds — he knows his own positions and they change once a
-month — and he does not want the product connecting to his broker. He wants the units he
-enters priced at today's market, the fees he has already described applied honestly, and
-a single figure for what he would have if he sold everything and brought it home, sitting
-next to what is in his bank accounts so that one number describes what he is actually
-worth.
+What costs them time, though, is not the arithmetic but stale prices. Spreadsheet
+functions that fetch live quotes fall back to cached values, so totals are anchored to
+whatever the last successful fetch returned, and nobody can tell by looking whether a
+figure is from today or three weeks ago. What they want is modest and specific. They are
+willing to type in what they hold, since they know their positions and those change once
+a month, and they don't want the product connecting to their broker. They want the units
+they enter priced at today's market, the fees they described applied honestly, and one
+figure for what they would have if they sold everything and brought it home, next to what
+is in their bank accounts, so that one number says what they are worth.
 
 ### ASSUMPTIONS
 
@@ -52,43 +50,48 @@ worth.
 
 ### STORIES
 
-* **07-S01** — **As** Ezequiel, **I want to** record what I hold by entering it myself
-  **so that I can** track my positions without connecting the product to my broker
+* **07-S01** — **When** I hold a few investments whose positions change about once a
+  month, **I want to** record what I hold by entering it myself, **so that** I can track
+  my positions without connecting the product to my broker.
   * A holding records instrument, units, and the account or broker it sits with
-  * Fractional units are supported to the precision his broker reports
+  * Fractional units are supported to the precision the person's broker reports
   * Holdings can be corrected and removed, and nothing requires an external connection
 
-* **07-S02** — **As** Ezequiel, **I want to** see my holdings valued at current market
-  prices **so that I can** stop looking at figures anchored to a stale quote
+* **07-S02** — **When** the prices I track my investments by may be out of date, **I want
+  to** see my holdings valued at current market prices, **so that** I can stop looking at
+  figures anchored to a stale quote.
   * Each holding shows its current value with the time the price was retrieved
   * A price that could not be refreshed is shown as stale with its age, never presented as
     current
-  * Prices refresh without him asking
+  * Prices refresh without the person asking
 
-* **07-S03** — **As** Ezequiel, **I want to** describe the fees my broker charges **so that
-  I can** have every figure account for them instead of correcting each one by hand
+* **07-S03** — **When** my broker charges different fees to deposit, trade, and withdraw,
+  **I want to** describe the fees my broker charges, **so that** I can have every figure
+  account for them instead of correcting each one by hand.
   * A fee profile holds a deposit fee as a percentage, a trade fee as either a flat amount
     or a percentage, and a withdrawal fee as a flat amount
   * Trade fees can differ per asset class within one profile
   * A profile applies to the holdings placed under it and can be edited afterwards
 
-* **07-S04** — **As** Ezequiel, **I want to** record a contribution with the fees it
-  actually incurred **so that I can** know what a position has really cost me
+* **07-S04** — **When** I add money to an investment and fees are taken along the way,
+  **I want to** record a contribution with the fees it actually incurred, **so that** I can
+  know what a position has really cost me.
   * A contribution records date, amount, units acquired, and price
   * Fees are derived from the fee profile, including grossing up the deposit fee from the
     net amount
   * Derived fees can be overridden for a contribution that was charged differently
 
-* **07-S05** — **As** Ezequiel, **I want to** see what I would actually receive if I sold
-  everything today **so that I can** know what my investments are worth to me rather than
-  on paper
+* **07-S05** — **When** selling my investments and bringing the money home would cost
+  fees, **I want to** see what I would actually receive if I sold everything today, **so
+  that** I can know what my investments are worth to me rather than on paper.
   * The figure is current market value less the exit fees the profile defines, less the
     withdrawal cost of bringing the money back
   * Each deduction is itemised
   * The figure states the price time it was computed from
 
-* **07-S06** — **As** Ezequiel, **I want to** see my accounts and my holdings in one total
-  **so that I can** answer what I am worth without adding two numbers from two places
+* **07-S06** — **When** my money is split between bank accounts and investments, **I want
+  to** see my accounts and my holdings in one total, **so that** I can answer what I am
+  worth without adding two numbers from two places.
   * Account balances and net liquidation value combine into one figure
   * The figure states its display currency, conversion rate, and rate date
   * The two components remain separately visible
